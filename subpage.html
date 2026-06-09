@@ -111,6 +111,14 @@
         </div>
     </div>
 
+    <!-- Modal for Portfolio 2 (Iframe URL) -->
+    <div id="portfolio2-modal" class="modal">
+        <span class="modal-close">&times;</span>
+        <div class="modal-content portfolio-modal-content">
+            <iframe src="about:blank" id="portfolio2-iframe" class="portfolio-iframe" frameborder="0"></iframe>
+        </div>
+    </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const cursor = document.getElementById("custom-cursor");
@@ -206,6 +214,39 @@
                 document.addEventListener("keydown", (e) => {
                     if (e.key === "Escape" && port1Modal.classList.contains("open")) {
                         closePort1();
+                    }
+                });
+            }
+
+            // Portfolio 2 Modal Logic
+            const port2Card = document.querySelector(".card-port2");
+            const port2Modal = document.getElementById("portfolio2-modal");
+            const port2Close = port2Modal.querySelector(".modal-close");
+            const port2Iframe = document.getElementById("portfolio2-iframe");
+
+            if (port2Card && port2Modal && port2Iframe) {
+                port2Card.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    port2Iframe.src = "https://ac-webp.vercel.app/";
+                    port2Modal.classList.add("open");
+                });
+
+                const closePort2 = () => {
+                    port2Modal.classList.remove("open");
+                    // Reset iframe src to avoid extra traffic/audio in background
+                    port2Iframe.src = "about:blank";
+                };
+
+                port2Close.addEventListener("click", closePort2);
+                port2Modal.addEventListener("click", (e) => {
+                    if (e.target === port2Modal) {
+                        closePort2();
+                    }
+                });
+
+                document.addEventListener("keydown", (e) => {
+                    if (e.key === "Escape" && port2Modal.classList.contains("open")) {
+                        closePort2();
                     }
                 });
             }
@@ -548,89 +589,32 @@
             }
         }
 
-        /* Portfolio 1 Specific Modal Styles */
+        /* Portfolio Modal Content Styles */
         .portfolio-modal-content {
-            width: 800px;
-            max-width: 95%;
+            width: 1800px;
+            max-width: 96%;
             height: 85vh;
-            background: #1e1e1e;
+            background: #000000;
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 16px;
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.65);
             display: flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: center;
             overflow: hidden;
             perspective: 1000px;
         }
 
-
-
-        .browser-mockup {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            background: #ffffff;
-            transform-style: preserve-3d;
-        }
-
-        .browser-header {
-            height: 40px;
-            background: #f0f0f0;
-            border-bottom: 1px solid #e0e0e0;
-            display: flex;
-            align-items: center;
-            padding: 0 15px;
-            gap: 15px;
-            user-select: none;
-            flex-shrink: 0;
-        }
-
-        .browser-dots {
-            display: flex;
-            gap: 8px;
-        }
-
-        .browser-dots .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            display: block;
-        }
-
-        .browser-dots .dot.red {
-            background-color: #ff5f56;
-        }
-
-        .browser-dots .dot.yellow {
-            background-color: #ffbd2e;
-        }
-
-        .browser-dots .dot.green {
-            background-color: #27c93f;
-        }
-
-        .browser-address {
-            flex-grow: 1;
-            background: #ffffff;
-            border: 1px solid #e0e0e0;
-            border-radius: 6px;
-            height: 26px;
-            display: flex;
-            align-items: center;
-            padding: 0 10px;
-            font-size: 11px;
-            color: #7f8c8d;
-            font-weight: 500;
-        }
-
         .browser-body {
             flex-grow: 1;
+            width: 100%;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
+            align-items: center;
             scroll-behavior: smooth;
-            background: #fdfdfd;
+            background: #000000;
         }
 
         /* Sleek browser style scrollbar */
@@ -639,33 +623,34 @@
         }
 
         .browser-body::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            background: #111111;
             border-radius: 0 16px 16px 0;
         }
 
         .browser-body::-webkit-scrollbar-thumb {
-            background: #c1c1c1;
+            background: #444444;
             border-radius: 4px;
         }
 
         .browser-body::-webkit-scrollbar-thumb:hover {
-            background: #a8a8a8;
+            background: #666666;
         }
 
         .portfolio-flow-img {
             width: 100%;
+            max-width: 1400px;
             height: auto;
             display: block;
         }
 
         .app-link-container {
             padding: 50px 20px;
+            width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #ffffff;
+            background: #000000;
             flex-shrink: 0;
-            border-top: 1px dashed #e0e0e0;
         }
 
         .app-link-btn {
@@ -693,6 +678,16 @@
         .app-link-btn:active {
             transform: translateY(-1px) scale(0.98);
             background: #000000;
+        }
+
+        /* Portfolio 2 Iframe Styles */
+        .portfolio-iframe {
+            width: 100%;
+            max-width: 1400px;
+            height: 100%;
+            border: none;
+            background: #ffffff;
+            display: block;
         }
 
         /* Responsive */
