@@ -1,0 +1,342 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&display=swap');
+
+:root {
+  --bg-color: #ffffff;
+  --folder-back-color: #80cfcf;
+  --folder-front-start: #abe5e5;
+  --folder-front-end: #75b4b4;
+  --about-me-color: #80cfcf;
+  --uxui-color: #9a679c;
+  --layout-color: #d48295;
+  --idea-color: #52c383;
+  --branding-color: #fb9d6a;
+  
+  --font-sans: 'Montserrat', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  font-family: var(--font-sans);
+}
+
+/* Container to keep everything centered and sized correctly */
+.container {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Folder Wrapper */
+.folder-wrapper {
+  position: relative;
+  width: 680px;
+  height: 460px;
+  user-select: none;
+}
+
+/* Folder Back Flap */
+.folder-back {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  width: 620px;
+  height: 350px;
+  background-color: var(--folder-back-color);
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  z-index: 1;
+}
+
+/* Tab: ABOUT ME */
+.tab-about-me {
+  position: absolute;
+  top: -38px;
+  left: 0;
+  width: 140px;
+  height: 48px;
+  background-color: var(--folder-back-color);
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.02);
+}
+
+.tab-about-me span {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 13px;
+  color: #000000;
+  letter-spacing: 0.05em;
+  padding-bottom: 5px; /* Offset because the bottom of tab is merged */
+}
+
+/* Hover effects for ABOUT ME tab */
+.tab-about-me:hover {
+  transform: translateY(-8px);
+  background-color: #8de3e3;
+  box-shadow: 0 -5px 15px rgba(128, 207, 207, 0.3);
+}
+
+/* Folder Inserts (File Icons/Tabs) Container */
+.folder-inserts {
+  position: absolute;
+  top: 0;
+  left: 30px;
+  width: 620px;
+  height: 350px;
+  z-index: 2;
+  pointer-events: none; /* Let clicks pass to children */
+}
+
+/* Base style for inserts */
+.folder-inserts a {
+  position: absolute;
+  display: inline-block;
+  text-decoration: none;
+  pointer-events: auto; /* Re-enable clicks */
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* --- Insert 1: UXUI DESIGN (Purple Starburst) --- */
+.insert-uxui {
+  left: -48px;
+  top: 68px;
+  transform: rotate(-15deg);
+  transform-origin: center center;
+}
+
+.insert-uxui .starburst-container {
+  position: relative;
+  width: 155px;
+  height: 155px;
+  filter: drop-shadow(0 8px 15px rgba(154, 103, 156, 0.35));
+}
+
+.insert-uxui .insert-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1.25;
+  text-align: center;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* Hover for UXUI Design */
+.insert-uxui:hover {
+  transform: translateY(-25px) rotate(-18deg) scale(1.05);
+  z-index: 10;
+}
+
+.insert-uxui:hover .starburst-container {
+  filter: drop-shadow(0 12px 25px rgba(154, 103, 156, 0.5));
+}
+
+
+/* --- Insert 2: LAYOUT (Pink Oval) --- */
+.insert-layout {
+  left: 80px;
+  top: 75px;
+  transform: rotate(-10deg);
+  transform-origin: center center;
+}
+
+.insert-layout .oval-shape {
+  width: 143px;
+  height: 64px;
+  background-color: var(--layout-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 15px rgba(212, 130, 149, 0.35);
+  transition: box-shadow 0.3s ease;
+}
+
+.insert-layout .oval-shape span {
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.05em;
+}
+
+/* Hover for LAYOUT */
+.insert-layout:hover {
+  transform: translateY(-28px) rotate(-12deg) scale(1.05);
+  z-index: 10;
+}
+
+.insert-layout:hover .oval-shape {
+  box-shadow: 0 12px 25px rgba(212, 130, 149, 0.5);
+}
+
+
+/* --- Insert 3: IDEA (Green Starburst) --- */
+.insert-idea {
+  left: 200px;
+  top: 30px;
+  transform: rotate(5deg);
+  transform-origin: center center;
+}
+
+.insert-idea .starburst-container {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  filter: drop-shadow(0 8px 15px rgba(82, 195, 131, 0.35));
+}
+
+.insert-idea .insert-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+/* Hover for IDEA */
+.insert-idea:hover {
+  transform: translateY(-25px) rotate(2deg) scale(1.05);
+  z-index: 10;
+}
+
+.insert-idea:hover .starburst-container {
+  filter: drop-shadow(0 12px 25px rgba(82, 195, 131, 0.5));
+}
+
+
+/* --- Insert 4: BRANDING (Orange Dome) --- */
+.insert-branding {
+  left: 310px;
+  top: 70px;
+  transform: rotate(15deg);
+  transform-origin: center center;
+}
+
+.insert-branding .dome-shape {
+  width: 135px;
+  height: 70px;
+  background-color: var(--branding-color);
+  border-top-left-radius: 70px;
+  border-top-right-radius: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 15px rgba(251, 157, 106, 0.35);
+  transition: box-shadow 0.3s ease;
+  padding-top: 15px; /* Offset text down slightly */
+}
+
+.insert-branding .dome-shape span {
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+}
+
+/* Hover for BRANDING */
+.insert-branding:hover {
+  transform: translateY(-28px) rotate(12deg) scale(1.05);
+  z-index: 10;
+}
+
+.insert-branding:hover .dome-shape {
+  box-shadow: 0 12px 25px rgba(251, 157, 106, 0.5);
+}
+
+
+/* Folder Front Flap */
+.folder-front {
+  position: absolute;
+  bottom: 0;
+  left: 15px;
+  width: 630px;
+  height: 335px;
+  background: linear-gradient(135deg, var(--folder-front-start) 0%, var(--folder-front-end) 100%);
+  border-radius: 18px;
+  transform: skewX(-14deg);
+  transform-origin: bottom left;
+  box-shadow: 
+    -5px 10px 25px rgba(0, 0, 0, 0.08), 
+    0 1px 3px rgba(255, 255, 255, 0.4) inset;
+  z-index: 3;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Front Flap Glassy Highlight Reflection */
+.folder-front::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+}
+
+/* Logo container inside front flap - needs to unskew the text */
+.logo-container {
+  transform: skewX(14deg); /* Inverse skew to keep text upright */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin-top: 15px; /* Adjust vertical center visually */
+  margin-left: -20px; /* Adjust horizontal center visually due to skew */
+}
+
+/* Logo image styling */
+.logo-title {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.logo-image {
+  width: 380px;
+  max-width: 85%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
