@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workspace - Profile & Portfolio</title>
+    <meta name="description" content="포트폴리오 서브 페이지 - 프로필 및 프로젝트 목록">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&display=swap">
+    <style>
+        :root {
+            --bg-color: radial-gradient(circle at 50% 50%, #f7fcfd 0%, #d3eeee 100%);
+            --font-sans: 'Montserrat', sans-serif;
+            --primary-color: #80cfcf;
+            --color-profile: #80cfcf;
+            --color-port1: #d48295;
+            --color-port2: #fb9d6a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            cursor: none !important; /* Global custom cursor integration */
+        }
+
+        body {
+            background: var(--bg-color);
+            font-family: var(--font-sans);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            overflow-x: hidden;
+        }
+
+        /* Container & Header */
+        .workspace-container {
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .header {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeIn 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #2c5353;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .header p {
+            font-size: 15px;
+            color: #6a9292;
+            font-weight: 500;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) 0.2s forwards;
+        }
+
+        /* Card Styles */
+        .card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 24px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 10px 30px rgba(128, 207, 207, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: var(--card-color);
+        }
+
+        .card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(128, 207, 207, 0.25);
+            border-color: var(--card-color);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Card Colors */
+        .card-profile { --card-color: var(--color-profile); }
+        .card-port1 { --card-color: var(--color-port1); }
+        .card-port2 { --card-color: var(--color-port2); }
+
+        /* Card Icon / Graphic */
+        .card-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover .card-icon-wrapper {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Card Typography */
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 12px;
+        }
+
+        .card-desc {
+            font-size: 13px;
+            color: #7f8c8d;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        /* Card Button style */
+        .card-btn {
+            margin-top: auto;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--card-color);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .card-btn {
+            background: var(--card-color);
+            color: #ffffff;
+            border-color: var(--card-color);
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #527e7e;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 10px 20px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(128, 207, 207, 0.2);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) 0.4s forwards;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+        }
+
+        .back-btn:hover {
+            background: #ffffff;
+            color: #2c5353;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(128, 207, 207, 0.2);
+            border-color: rgba(128, 207, 207, 0.4);
+        }
+
+        /* Custom Cursor Style */
+        .custom-cursor {
+            position: fixed;
+            pointer-events: none;
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            opacity: 0;
+            transform: scale(0.6);
+            transform-origin: top left;
+            transition: opacity 0.25s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+            margin-top: -1px;
+            margin-left: -1px;
+        }
+
+        .custom-cursor.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .custom-cursor-arrow {
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+            display: block;
+        }
+
+        .custom-cursor-text {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: var(--font-sans);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            padding: 4px 10px 3px 10px;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            text-transform: uppercase;
+            display: inline-block;
+            line-height: 1;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.2s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .custom-cursor.show-text .custom-cursor-text {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Custom Cursor Badge -->
+    <div id="custom-cursor" class="custom-cursor">
+        <svg class="custom-cursor-arrow" width="18" height="18" viewBox="0 0 24 24">
+            <path d="M4.5 3v15.3l4.7-4.7 3.5 7 2.8-1.4-3.5-7h6.6L4.5 3z" fill="#000000" stroke="#ffffff" stroke-width="1.5" />
+        </svg>
+        <span class="custom-cursor-text">Click</span>
+    </div>
+
+    <div class="workspace-container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Workspace</h1>
+            <p>프로필 및 제작완료된 포트폴리오 프로젝트 목록</p>
+        </header>
+
+        <!-- Cards Grid -->
+        <main class="cards-grid">
+            
+            <!-- Card 1: Profile -->
+            <a href="#profile" class="card card-profile">
+                <div class="card-icon-wrapper">
+                    <!-- Profile avatar icon -->
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#80cfcf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                    </svg>
+                </div>
+                <h2 class="card-title">프로필</h2>
+                <p class="card-desc">작성자에 대한 간략한 소개, 핵심 역량 및 기술 스택 정보를 담은 소개 페이지입니다.</p>
+                <span class="card-btn">자세히 보기</span>
+            </a>
+
+            <!-- Card 2: Portfolio 1 -->
+            <a href="#portfolio1" class="card card-port1">
+                <div class="card-icon-wrapper">
+                    <!-- Layout/Design portfolio icon -->
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#d48295" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                        <line x1="9" y1="3" x2="9" y2="21" />
+                        <line x1="9" y1="9" x2="21" y2="9" />
+                        <line x1="9" y1="15" x2="21" y2="15" />
+                    </svg>
+                </div>
+                <h2 class="card-title">포트폴리오1</h2>
+                <p class="card-desc">사용자 경험을 극대화한 UX/UI 설계 및 레이아웃 그리드 시스템 중심의 웹 디자인 작업물입니다.</p>
+                <span class="card-btn">자세히 보기</span>
+            </a>
+
+            <!-- Card 3: Portfolio 2 -->
+            <a href="#portfolio2" class="card card-port2">
+                <div class="card-icon-wrapper">
+                    <!-- Branding portfolio icon -->
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#fb9d6a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                    </svg>
+                </div>
+                <h2 class="card-title">포트폴리오2</h2>
+                <p class="card-desc">독창적인 아이디어를 바탕으로 설계한 브랜드 아이덴티티 및 크리에이티브 시각 디자인 작업물입니다.</p>
+                <span class="card-btn">자세히 보기</span>
+            </a>
+
+        </main>
+
+        <!-- Back Button -->
+        <a href="index.html" class="back-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12" />
+                <polyline points="12 19 5 12 12 5" />
+            </svg>
+            돌아가기
+        </a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const cursor = document.getElementById("custom-cursor");
+            const clickables = document.querySelectorAll(".card, .back-btn");
+
+            // Custom floating cursor tracking
+            document.addEventListener("mousemove", (e) => {
+                window.requestAnimationFrame(() => {
+                    cursor.style.left = `${e.clientX}px`;
+                    cursor.style.top = `${e.clientY}px`;
+                });
+            });
+
+            // Show cursor when entering viewport
+            document.addEventListener("mouseenter", () => {
+                cursor.classList.add("active");
+            });
+
+            // Hide cursor when leaving viewport
+            document.addEventListener("mouseleave", () => {
+                cursor.classList.remove("active");
+            });
+
+            // Toggle show-text class ("CLICK") when hovering over clickable cards/buttons
+            clickables.forEach((item) => {
+                item.addEventListener("mouseenter", () => {
+                    cursor.classList.add("show-text");
+                });
+                item.addEventListener("mouseleave", () => {
+                    cursor.classList.remove("show-text");
+                });
+            });
+
+            // Show by default if mouse starts in page
+            cursor.classList.add("active");
+        });
+    </script>
+</body>
+
+</html>
