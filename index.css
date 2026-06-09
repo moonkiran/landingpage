@@ -120,6 +120,7 @@ body {
 /* Folder Wrapper */
 .folder-wrapper {
   position: relative;
+  right: 15vw;
   width: 680px;
   height: 460px;
   user-select: none;
