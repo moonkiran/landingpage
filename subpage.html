@@ -123,10 +123,8 @@
             const cursor = document.getElementById("custom-cursor");
             const modal = document.getElementById("profile-modal");
             const modalClose = document.querySelector(".modal-close");
-
             // Elements that trigger custom cursor "Click" hover state
-            const clickables = document.querySelectorAll(".card, .back-btn, .modal-close, .modal, .app-link-btn");
-
+            const clickables = document.querySelectorAll(".card, .back-btn, .app-link-btn");
             // Prevent opening modal when clicking on the link buttons inside the cards
             const linkBtns = document.querySelectorAll(".app-link-btn");
             linkBtns.forEach(btn => {
@@ -255,6 +253,14 @@
                     if (e.key === "Escape" && port2Modal.classList.contains("open")) {
                         closePort2();
                     }
+                });
+
+                // Hide custom cursor when mouse enters the iframe, restore when it leaves
+                port2Iframe.addEventListener("mouseenter", () => {
+                    cursor.classList.remove("active");
+                });
+                port2Iframe.addEventListener("mouseleave", () => {
+                    cursor.classList.add("active");
                 });
             }
 
@@ -694,6 +700,7 @@
             border: none;
             background: #ffffff;
             display: block;
+            cursor: auto !important;
         }
 
         /* Responsive */
