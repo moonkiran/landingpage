@@ -7,6 +7,211 @@
     <title>Workspace - Profile & Portfolio</title>
     <meta name="description" content="포트폴리오 서브 페이지 - 프로필 및 프로젝트 목록">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&display=swap">
+</head>
+
+<body>
+
+    <!-- Custom Cursor Badge -->
+    <div id="custom-cursor" class="custom-cursor">
+        <svg class="custom-cursor-arrow" width="18" height="18" viewBox="0 0 24 24">
+            <path d="M4.5 3v15.3l4.7-4.7 3.5 7 2.8-1.4-3.5-7h6.6L4.5 3z" fill="#000000" stroke="#ffffff"
+                stroke-width="1.5" />
+        </svg>
+        <span class="custom-cursor-text">Click</span>
+    </div>
+
+    <div class="workspace-container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Workspace</h1>
+            <p>프로필 및 제작완료된 포트폴리오 프로젝트 목록</p>
+        </header>
+
+        <!-- Cards Grid -->
+        <main class="cards-grid">
+
+            <!-- Card 1: Profile -->
+            <a href="#profile" class="card card-profile">
+                <div class="card-icon-wrapper">
+                    <!-- Profile avatar icon -->
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#80cfcf" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                    </svg>
+                </div>
+                <h2 class="card-title">프로필</h2>
+                <p class="card-desc">작성자에 대한 간략한 소개, 핵심 역량 및 기술 스택 정보를 담은 소개 페이지입니다.</p>
+                <span class="card-btn">자세히 보기</span>
+            </a>
+
+            <!-- Card 2: Portfolio 1 -->
+            <a href="#portfolio1" class="card card-port1">
+                <div class="card-icon-wrapper">
+                    <!-- Layout/Design portfolio icon -->
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#d48295" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                        <line x1="9" y1="3" x2="9" y2="21" />
+                        <line x1="9" y1="9" x2="21" y2="9" />
+                        <line x1="9" y1="15" x2="21" y2="15" />
+                    </svg>
+                </div>
+                <h2 class="card-title">포트폴리오1</h2>
+                <p class="card-desc">사용자 경험을 극대화한 UX/UI 설계 및 레이아웃 그리드 시스템 중심의 웹 디자인 작업물입니다.</p>
+                <span class="card-btn">자세히 보기</span>
+            </a>
+
+            <!-- Card 3: Portfolio 2 -->
+            <a href="#portfolio2" class="card card-port2">
+                <div class="card-icon-wrapper">
+                    <!-- Branding portfolio icon -->
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#fb9d6a" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                    </svg>
+                </div>
+                <h2 class="card-title">포트폴리오2</h2>
+                <p class="card-desc">독창적인 아이디어를 바탕으로 설계한 브랜드 아이덴티티 및 크리에이티브 시각 디자인 작업물입니다.</p>
+                <span class="card-btn">자세히 보기</span>
+            </a>
+
+        </main>
+
+        <!-- Back Button -->
+        <a href="index.html" class="back-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12" />
+                <polyline points="12 19 5 12 12 5" />
+            </svg>
+            돌아가기
+        </a>
+    </div>
+
+    <!-- Modal for Profile Image -->
+    <div id="profile-modal" class="modal">
+        <span class="modal-close">&times;</span>
+        <div class="modal-content">
+            <img src="img/profill.jpg" alt="Profile Details" class="modal-image">
+        </div>
+    </div>
+
+    <!-- Modal for Portfolio 1 (Flowing Images) -->
+    <div id="portfolio1-modal" class="modal">
+        <span class="modal-close">&times;</span>
+        <div class="modal-content portfolio-modal-content">
+            <div class="browser-body">
+                <img src="img/heropage.jpg" alt="Hero Page" class="portfolio-flow-img">
+                <img src="img/mainpage (2).jpg" alt="Main Page" class="portfolio-flow-img">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const cursor = document.getElementById("custom-cursor");
+            const modal = document.getElementById("profile-modal");
+            const modalClose = document.querySelector(".modal-close");
+
+            // Elements that trigger custom cursor "Click" hover state
+            const clickables = document.querySelectorAll(".card, .back-btn, .modal-close, .modal");
+
+            // Custom floating cursor tracking
+            document.addEventListener("mousemove", (e) => {
+                window.requestAnimationFrame(() => {
+                    cursor.style.left = `${e.clientX}px`;
+                    cursor.style.top = `${e.clientY}px`;
+                });
+            });
+
+            // Show cursor when entering viewport
+            document.addEventListener("mouseenter", () => {
+                cursor.classList.add("active");
+            });
+
+            // Hide cursor when leaving viewport
+            document.addEventListener("mouseleave", () => {
+                cursor.classList.remove("active");
+            });
+
+            // Toggle show-text class ("CLICK") when hovering over clickable cards/buttons
+            clickables.forEach((item) => {
+                item.addEventListener("mouseenter", () => {
+                    cursor.classList.add("show-text");
+                });
+                item.addEventListener("mouseleave", () => {
+                    cursor.classList.remove("show-text");
+                });
+            });
+
+            // Profile Modal Logic
+            const profileCard = document.querySelector(".card-profile");
+
+            if (profileCard && modal) {
+                profileCard.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    modal.classList.add("open");
+                });
+
+                // Close modal on close button click
+                modalClose.addEventListener("click", () => {
+                    modal.classList.remove("open");
+                });
+
+                // Close modal when clicking outside the image
+                modal.addEventListener("click", (e) => {
+                    if (e.target === modal) {
+                        modal.classList.remove("open");
+                    }
+                });
+
+                // Close modal on Esc key press
+                document.addEventListener("keydown", (e) => {
+                    if (e.key === "Escape" && modal.classList.contains("open")) {
+                        modal.classList.remove("open");
+                    }
+                });
+            }
+
+            // Portfolio 1 Modal Logic
+            const port1Card = document.querySelector(".card-port1");
+            const port1Modal = document.getElementById("portfolio1-modal");
+            const port1Close = port1Modal.querySelector(".modal-close");
+            const browserBody = port1Modal.querySelector(".browser-body");
+
+            if (port1Card && port1Modal) {
+                port1Card.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    port1Modal.classList.add("open");
+
+                    // Reset scroll to top
+                    browserBody.scrollTop = 0;
+                });
+
+                const closePort1 = () => {
+                    port1Modal.classList.remove("open");
+                };
+
+                port1Close.addEventListener("click", closePort1);
+                port1Modal.addEventListener("click", (e) => {
+                    if (e.target === port1Modal) {
+                        closePort1();
+                    }
+                });
+
+                document.addEventListener("keydown", (e) => {
+                    if (e.key === "Escape" && port1Modal.classList.contains("open")) {
+                        closePort1();
+                    }
+                });
+            }
+
+            // Show by default if mouse starts in page
+            cursor.classList.add("active");
+        });
+    </script>
+
     <style>
         :root {
             --bg-color: radial-gradient(circle at 50% 50%, #f7fcfd 0%, #d3eeee 100%);
@@ -21,7 +226,8 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            cursor: none !important; /* Global custom cursor integration */
+            cursor: none !important;
+            /* Global custom cursor integration */
         }
 
         body {
@@ -116,9 +322,17 @@
         }
 
         /* Card Colors */
-        .card-profile { --card-color: var(--color-profile); }
-        .card-port1 { --card-color: var(--color-port1); }
-        .card-port2 { --card-color: var(--color-port2); }
+        .card-profile {
+            --card-color: var(--color-profile);
+        }
+
+        .card-port1 {
+            --card-color: var(--color-port1);
+        }
+
+        .card-port2 {
+            --card-color: var(--color-port2);
+        }
 
         /* Card Icon / Graphic */
         .card-icon-wrapper {
@@ -209,7 +423,8 @@
         .custom-cursor {
             position: fixed;
             pointer-events: none;
-            z-index: 1000000; /* Raised to be above the modal */
+            z-index: 1000000;
+            /* Raised to be above the modal */
             display: flex;
             align-items: center;
             gap: 6px;
@@ -330,6 +545,116 @@
             }
         }
 
+        /* Portfolio 1 Specific Modal Styles */
+        .portfolio-modal-content {
+            width: 800px;
+            max-width: 95%;
+            height: 85vh;
+            background: #1e1e1e;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.65);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+
+
+        .browser-mockup {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: #ffffff;
+            transform-style: preserve-3d;
+        }
+
+        .browser-header {
+            height: 40px;
+            background: #f0f0f0;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            gap: 15px;
+            user-select: none;
+            flex-shrink: 0;
+        }
+
+        .browser-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .browser-dots .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: block;
+        }
+
+        .browser-dots .dot.red {
+            background-color: #ff5f56;
+        }
+
+        .browser-dots .dot.yellow {
+            background-color: #ffbd2e;
+        }
+
+        .browser-dots .dot.green {
+            background-color: #27c93f;
+        }
+
+        .browser-address {
+            flex-grow: 1;
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            font-size: 11px;
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+
+        .browser-body {
+            flex-grow: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            scroll-behavior: smooth;
+            background: #fdfdfd;
+        }
+
+        /* Sleek browser style scrollbar */
+        .browser-body::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .browser-body::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 0 16px 16px 0;
+        }
+
+        .browser-body::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        .browser-body::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+
+        .portfolio-flow-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .cards-grid {
@@ -338,161 +663,6 @@
             }
         }
     </style>
-</head>
-
-<body>
-
-    <!-- Custom Cursor Badge -->
-    <div id="custom-cursor" class="custom-cursor">
-        <svg class="custom-cursor-arrow" width="18" height="18" viewBox="0 0 24 24">
-            <path d="M4.5 3v15.3l4.7-4.7 3.5 7 2.8-1.4-3.5-7h6.6L4.5 3z" fill="#000000" stroke="#ffffff" stroke-width="1.5" />
-        </svg>
-        <span class="custom-cursor-text">Click</span>
-    </div>
-
-    <div class="workspace-container">
-        <!-- Header -->
-        <header class="header">
-            <h1>Workspace</h1>
-            <p>프로필 및 제작완료된 포트폴리오 프로젝트 목록</p>
-        </header>
-
-        <!-- Cards Grid -->
-        <main class="cards-grid">
-            
-            <!-- Card 1: Profile -->
-            <a href="#profile" class="card card-profile">
-                <div class="card-icon-wrapper">
-                    <!-- Profile avatar icon -->
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#80cfcf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                        <circle cx="12" cy="7" r="4" />
-                    </svg>
-                </div>
-                <h2 class="card-title">프로필</h2>
-                <p class="card-desc">작성자에 대한 간략한 소개, 핵심 역량 및 기술 스택 정보를 담은 소개 페이지입니다.</p>
-                <span class="card-btn">자세히 보기</span>
-            </a>
-
-            <!-- Card 2: Portfolio 1 -->
-            <a href="#portfolio1" class="card card-port1">
-                <div class="card-icon-wrapper">
-                    <!-- Layout/Design portfolio icon -->
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#d48295" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                        <line x1="9" y1="3" x2="9" y2="21" />
-                        <line x1="9" y1="9" x2="21" y2="9" />
-                        <line x1="9" y1="15" x2="21" y2="15" />
-                    </svg>
-                </div>
-                <h2 class="card-title">포트폴리오1</h2>
-                <p class="card-desc">사용자 경험을 극대화한 UX/UI 설계 및 레이아웃 그리드 시스템 중심의 웹 디자인 작업물입니다.</p>
-                <span class="card-btn">자세히 보기</span>
-            </a>
-
-            <!-- Card 3: Portfolio 2 -->
-            <a href="#portfolio2" class="card card-port2">
-                <div class="card-icon-wrapper">
-                    <!-- Branding portfolio icon -->
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#fb9d6a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                    </svg>
-                </div>
-                <h2 class="card-title">포트폴리오2</h2>
-                <p class="card-desc">독창적인 아이디어를 바탕으로 설계한 브랜드 아이덴티티 및 크리에이티브 시각 디자인 작업물입니다.</p>
-                <span class="card-btn">자세히 보기</span>
-            </a>
-
-        </main>
-
-        <!-- Back Button -->
-        <a href="index.html" class="back-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="19" y1="12" x2="5" y2="12" />
-                <polyline points="12 19 5 12 12 5" />
-            </svg>
-            돌아가기
-        </a>
-    </div>
-
-    <!-- Modal for Profile Image -->
-    <div id="profile-modal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close">&times;</span>
-            <img src="img/profill.jpg" alt="Profile Details" class="modal-image">
-        </div>
-    </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const cursor = document.getElementById("custom-cursor");
-            const modal = document.getElementById("profile-modal");
-            const modalClose = document.querySelector(".modal-close");
-
-            // Elements that trigger custom cursor "Click" hover state
-            const clickables = document.querySelectorAll(".card, .back-btn, .modal-close, #profile-modal");
-
-            // Custom floating cursor tracking
-            document.addEventListener("mousemove", (e) => {
-                window.requestAnimationFrame(() => {
-                    cursor.style.left = `${e.clientX}px`;
-                    cursor.style.top = `${e.clientY}px`;
-                });
-            });
-
-            // Show cursor when entering viewport
-            document.addEventListener("mouseenter", () => {
-                cursor.classList.add("active");
-            });
-
-            // Hide cursor when leaving viewport
-            document.addEventListener("mouseleave", () => {
-                cursor.classList.remove("active");
-            });
-
-            // Toggle show-text class ("CLICK") when hovering over clickable cards/buttons
-            clickables.forEach((item) => {
-                item.addEventListener("mouseenter", () => {
-                    cursor.classList.add("show-text");
-                });
-                item.addEventListener("mouseleave", () => {
-                    cursor.classList.remove("show-text");
-                });
-            });
-
-            // Profile Modal Logic
-            const profileCard = document.querySelector(".card-profile");
-
-            if (profileCard && modal) {
-                profileCard.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    modal.classList.add("open");
-                });
-
-                // Close modal on close button click
-                modalClose.addEventListener("click", () => {
-                    modal.classList.remove("open");
-                });
-
-                // Close modal when clicking outside the image
-                modal.addEventListener("click", (e) => {
-                    if (e.target === modal) {
-                        modal.classList.remove("open");
-                    }
-                });
-
-                // Close modal on Esc key press
-                document.addEventListener("keydown", (e) => {
-                    if (e.key === "Escape" && modal.classList.contains("open")) {
-                        modal.classList.remove("open");
-                    }
-                });
-            }
-
-            // Show by default if mouse starts in page
-            cursor.classList.add("active");
-        });
-    </script>
 </body>
 
 </html>
