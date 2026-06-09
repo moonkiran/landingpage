@@ -209,7 +209,7 @@
         .custom-cursor {
             position: fixed;
             pointer-events: none;
-            z-index: 99999;
+            z-index: 1000000; /* Raised to be above the modal */
             display: flex;
             align-items: center;
             gap: 6px;
@@ -252,6 +252,74 @@
         .custom-cursor.show-text .custom-cursor-text {
             opacity: 1;
             transform: scale(1);
+        }
+
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .modal.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            transform: scale(0.85);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal.open .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-image {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            display: block;
+            border-radius: 16px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #ffffff;
+            font-size: 36px;
+            font-weight: 700;
+            line-height: 1;
+            cursor: none !important;
+            user-select: none;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--color-profile);
+            transform: scale(1.1);
         }
 
         /* Animations */
@@ -347,10 +415,22 @@
         </a>
     </div>
 
+    <!-- Modal for Profile Image -->
+    <div id="profile-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <img src="img/profill.jpg" alt="Profile Details" class="modal-image">
+        </div>
+    </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const cursor = document.getElementById("custom-cursor");
-            const clickables = document.querySelectorAll(".card, .back-btn");
+            const modal = document.getElementById("profile-modal");
+            const modalClose = document.querySelector(".modal-close");
+
+            // Elements that trigger custom cursor "Click" hover state
+            const clickables = document.querySelectorAll(".card, .back-btn, .modal-close, #profile-modal");
 
             // Custom floating cursor tracking
             document.addEventListener("mousemove", (e) => {
@@ -379,6 +459,35 @@
                     cursor.classList.remove("show-text");
                 });
             });
+
+            // Profile Modal Logic
+            const profileCard = document.querySelector(".card-profile");
+
+            if (profileCard && modal) {
+                profileCard.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    modal.classList.add("open");
+                });
+
+                // Close modal on close button click
+                modalClose.addEventListener("click", () => {
+                    modal.classList.remove("open");
+                });
+
+                // Close modal when clicking outside the image
+                modal.addEventListener("click", (e) => {
+                    if (e.target === modal) {
+                        modal.classList.remove("open");
+                    }
+                });
+
+                // Close modal on Esc key press
+                document.addEventListener("keydown", (e) => {
+                    if (e.key === "Escape" && modal.classList.contains("open")) {
+                        modal.classList.remove("open");
+                    }
+                });
+            }
 
             // Show by default if mouse starts in page
             cursor.classList.add("active");
