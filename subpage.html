@@ -16,36 +16,25 @@
         <svg class="custom-cursor-arrow" width="18" height="18" viewBox="0 0 24 24">
             <path d="M4.5 3v15.3l4.7-4.7 3.5 7 2.8-1.4-3.5-7h6.6L4.5 3z" fill="#000000" stroke="#ffffff"
                 stroke-width="1.5" />
-        </svg>
         <span class="custom-cursor-text">Click</span>
     </div>
 
     <div class="workspace-container">
+        <!-- Profile Section -->
+        <section class="profile-section">
+            <img src="img/profill.jpg" alt="Profile Details" class="profile-display-image">
+        </section>
+
         <!-- Header -->
         <header class="header">
             <h1>Workspace</h1>
-            <p>프로필 및 제작완료된 포트폴리오 프로젝트 목록</p>
+            <p>제작완료된 포트폴리오 프로젝트 목록</p>
         </header>
 
         <!-- Cards Grid -->
         <main class="cards-grid">
 
-            <!-- Card 1: Profile -->
-            <div class="card card-profile">
-                <div class="card-icon-wrapper">
-                    <!-- Profile avatar icon -->
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#80cfcf" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                        <circle cx="12" cy="7" r="4" />
-                    </svg>
-                </div>
-                <h2 class="card-title">프로필</h2>
-                <p class="card-desc">작성자에 대한 간략한 소개, 핵심 역량 및 기술 스택 정보를 담은 소개 페이지입니다.</p>
-                <span class="card-btn">포트폴리오 보기</span>
-            </div>
-
-            <!-- Card 2: Portfolio 1 -->
+            <!-- Card 1: Portfolio 1 -->
             <div class="card card-port1">
                 <div class="card-icon-wrapper">
                     <!-- Layout/Design portfolio icon -->
@@ -63,7 +52,7 @@
                 <a href="https://usanbiseo.vercel.app/" class="app-link-btn" target="_blank">우산비서 바로 가기</a>
             </div>
 
-            <!-- Card 3: Portfolio 2 -->
+            <!-- Card 2: Portfolio 2 -->
             <div class="card card-port2">
                 <div class="card-icon-wrapper">
                     <!-- Branding portfolio icon -->
@@ -91,14 +80,6 @@
         </a>
     </div>
 
-    <!-- Modal for Profile Image -->
-    <div id="profile-modal" class="modal">
-        <span class="modal-close">&times;</span>
-        <div class="modal-content">
-            <img src="img/profill.jpg" alt="Profile Details" class="modal-image">
-        </div>
-    </div>
-
     <!-- Modal for Portfolio 1 (Flowing Images) -->
     <div id="portfolio1-modal" class="modal">
         <span class="modal-close">&times;</span>
@@ -121,8 +102,6 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const cursor = document.getElementById("custom-cursor");
-            const modal = document.getElementById("profile-modal");
-            const modalClose = document.querySelector(".modal-close");
             // Elements that trigger custom cursor "Click" hover state
             const clickables = document.querySelectorAll(".card, .back-btn, .app-link-btn");
             // Prevent opening modal when clicking on the link buttons inside the cards
@@ -162,33 +141,7 @@
             });
 
             // Profile Modal Logic
-            const profileCard = document.querySelector(".card-profile");
 
-            if (profileCard && modal) {
-                profileCard.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    modal.classList.add("open");
-                });
-
-                // Close modal on close button click
-                modalClose.addEventListener("click", () => {
-                    modal.classList.remove("open");
-                });
-
-                // Close modal when clicking outside the image
-                modal.addEventListener("click", (e) => {
-                    if (e.target === modal) {
-                        modal.classList.remove("open");
-                    }
-                });
-
-                // Close modal on Esc key press
-                document.addEventListener("keydown", (e) => {
-                    if (e.key === "Escape" && modal.classList.contains("open")) {
-                        modal.classList.remove("open");
-                    }
-                });
-            }
 
             // Portfolio 1 Modal Logic
             const port1Card = document.querySelector(".card-port1");
@@ -294,19 +247,19 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
+            justify-content: flex-start;
+            padding: 0;
             overflow-x: hidden;
         }
 
         /* Container & Header */
         .workspace-container {
             width: 100%;
-            max-width: 1000px;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 40px;
+            padding-bottom: 80px;
         }
 
         .header {
@@ -314,6 +267,11 @@
             opacity: 0;
             transform: translateY(-20px);
             animation: fadeIn 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+            margin-bottom: 10px;
+            width: 100%;
+            max-width: 1000px;
+            padding: 0 20px;
+            box-sizing: border-box;
         }
 
         .header h1 {
@@ -331,15 +289,39 @@
             font-weight: 500;
         }
 
-        /* Cards Grid */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+        /* Profile Section */
+        .profile-section {
             width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            box-sizing: border-box;
             opacity: 0;
             transform: translateY(20px);
             animation: fadeIn 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) 0.2s forwards;
+        }
+
+        .profile-display-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            width: 100%;
+            max-width: 1000px;
+            padding: 0 20px;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) 0.4s forwards;
         }
 
         /* Card Styles */
@@ -572,13 +554,7 @@
             transform: scale(1);
         }
 
-        .modal-image {
-            max-width: 100%;
-            max-height: 85vh;
-            object-fit: contain;
-            display: block;
-            border-radius: 16px;
-        }
+
 
         .modal-close {
             position: absolute;
