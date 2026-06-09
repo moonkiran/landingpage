@@ -20,73 +20,133 @@
         <span class="custom-cursor-text">Click</span>
     </div>
 
-    <div class="container">
-        <!-- Title Text -->
-    </div>
+    <div class="scroll-container">
 
-    <div class="folder-wrapper">
-
-        <!-- Folder Back Flap -->
-        <div class="folder-back">
-            <!-- Tab: ABOUT ME -->
-            <div class="tab-about-me" id="tab-about-me">
-                <span>ABOUT ME</span>
+        <!-- Section 1: Welcome -->
+        <section class="section-full section-welcome">
+            <div class="welcome-text-container">
+                <h1 class="welcome-title">WELCOME TO<br>MY DESIGN UNIVERSE</h1>
+                <p class="welcome-subtitle">더 나은 경험을 디자인합니다</p>
+                <p class="designer-name"></p>
             </div>
-        </div>
+        </section>
 
-        <!-- Folder Inserts (File Icons/Tabs) -->
-        <div class="folder-inserts">
+        <!-- Section 2: Profile -->
+        <section class="section-full section-profile">
+            <header class="profile-header">
+                <h2>PROFILE</h2>
+                <p>더 나은 경험을 디자인합니다</p>
+            </header>
+            <div class="os-window">
+                <div class="os-window-header">
+                    <div class="os-dots">
+                        <span class="dot close"></span>
+                        <span class="dot minimize"></span>
+                        <span class="dot maximize"></span>
+                    </div>
+                    <div class="os-title">Profill Viewer</div>
+                </div>
+                <div class="os-window-content">
+                    <img src="img/profill.jpg" alt="Profile Details" class="profile-display-image">
+                </div>
+            </div>
+        </section>
 
-            <!-- Insert 1: UXUI DESIGN (Purple Starburst) -->
-            <a href="#uxui" class="insert-uxui" id="insert-uxui" title="UX/UI Design Portfolio">
-                <div class="starburst-container">
-                    <svg width="100%" height="100%" viewBox="0 0 160 160">
-                        <polygon id="starburst-uxui" points="" fill="#9a679c" />
-                    </svg>
-                    <div class="insert-text">
-                        UXUI<br>DESIGN
+        <!-- Section 3: Tools & Folder -->
+        <section class="section-full section-tools-folder">
+            <div class="tools-panel">
+                <div class="tools-header-badge">TOOLS USED</div>
+
+                <div class="tools-category">
+                    <h3 class="tools-cat-title">DESIGN</h3>
+                    <div class="badge-group">
+                        <span class="tool-badge"><span class="color-dot figma"></span> Figma</span>
+                        <span class="tool-badge"><span class="color-dot stitch"></span> Stitch AI</span>
                     </div>
                 </div>
-            </a>
 
-            <!-- Insert 2: LAYOUT (Pink Oval) -->
-            <a href="#layout" class="insert-layout" id="insert-layout" title="Layout Design Portfolio">
-                <div class="oval-shape">
-                    <span>LAYOUT</span>
-                </div>
-            </a>
-
-            <!-- Insert 3: IDEA (Green Starburst) -->
-            <a href="#idea" class="insert-idea" id="insert-idea" title="Idea & Strategy Portfolio">
-                <div class="starburst-container">
-                    <svg width="100%" height="100%" viewBox="0 0 160 160">
-                        <polygon id="starburst-idea" points="" fill="#52c383" />
-                    </svg>
-                    <div class="insert-text">
-                        IDEA
+                <div class="tools-category">
+                    <h3 class="tools-cat-title">AI</h3>
+                    <div class="badge-group">
+                        <span class="tool-badge"><span class="color-dot gemini"></span> Gemini</span>
+                        <span class="tool-badge"><span class="color-dot claude"></span> Claude</span>
+                        <span class="tool-badge"><span class="color-dot chatgpt"></span> ChatGPT</span>
                     </div>
                 </div>
-            </a>
 
-            <!-- Insert 4: BRANDING (Orange Dome) -->
-            <a href="#branding" class="insert-branding" id="insert-branding" title="Branding Portfolio">
-                <div class="dome-shape">
-                    <span>BRANDING</span>
+                <div class="badge-group bottom-badges">
+                    <span class="tool-badge border-only"><span class="icon-dev">⚙️</span> Dev tools</span>
+                    <span class="tool-badge border-only">GitHub</span>
+                    <span class="tool-badge border-only">Vercel</span>
+                    <span class="tool-badge border-only">Firebase</span>
                 </div>
-            </a>
-
-        </div>
-
-        <!-- Folder Front Flap -->
-        <a href="subpage.html" class="folder-front" id="folder-front" title="">
-            <div class="logo-container">
-                <h1 class="logo-title">
-                    <img src="img/covertext.png" alt="portfolio" class="logo-image">
-                </h1>
             </div>
-        </a>
 
-    </div>
+            <!-- Existing Folder Wrapper -->
+            <div class="folder-wrapper">
+
+                <!-- Folder Back Flap -->
+                <div class="folder-back">
+                    <!-- Tab: ABOUT ME -->
+                    <div class="tab-about-me" id="tab-about-me">
+                        <span>ABOUT ME</span>
+                    </div>
+                </div>
+
+                <!-- Folder Inserts (File Icons/Tabs) -->
+                <div class="folder-inserts">
+
+                    <!-- Insert 1: UXUI DESIGN (Purple Starburst) -->
+                    <a href="#uxui" class="insert-uxui" id="insert-uxui" title="UX/UI Design Portfolio">
+                        <div class="starburst-container">
+                            <svg width="100%" height="100%" viewBox="0 0 160 160">
+                                <polygon id="starburst-uxui" points="" fill="#9a679c" />
+                            </svg>
+                            <div class="insert-text">
+                                UXUI<br>DESIGN
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Insert 2: LAYOUT (Pink Oval) -->
+                    <a href="#layout" class="insert-layout" id="insert-layout" title="Layout Design Portfolio">
+                        <div class="oval-shape">
+                            <span>LAYOUT</span>
+                        </div>
+                    </a>
+
+                    <!-- Insert 3: IDEA (Green Starburst) -->
+                    <a href="#idea" class="insert-idea" id="insert-idea" title="Idea & Strategy Portfolio">
+                        <div class="starburst-container">
+                            <svg width="100%" height="100%" viewBox="0 0 160 160">
+                                <polygon id="starburst-idea" points="" fill="#52c383" />
+                            </svg>
+                            <div class="insert-text">
+                                IDEA
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Insert 4: BRANDING (Orange Dome) -->
+                    <a href="#branding" class="insert-branding" id="insert-branding" title="Branding Portfolio">
+                        <div class="dome-shape">
+                            <span>BRANDING</span>
+                        </div>
+                    </a>
+
+                </div>
+
+                <!-- Folder Front Flap -->
+                <a href="subpage.html" class="folder-front" id="folder-front" title="">
+                    <div class="logo-container">
+                        <h1 class="logo-title">
+                            <img src="img/covertext.png" alt="portfolio" class="logo-image">
+                        </h1>
+                    </div>
+                </a>
+
+            </div>
+        </section>
     </div>
 
     <script>

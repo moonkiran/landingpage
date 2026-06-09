@@ -25,53 +25,217 @@ body {
   background: url('img/coverfirst.jpg') no-repeat center center fixed;
   background-size: cover;
   min-height: 100vh;
+  margin: 0;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  /* Allow vertical scrolling */
+  overflow-y: auto;
+}
+
+/* Common Section Layout */
+.scroll-container {
+  width: 100%;
+}
+
+.section-full {
+  width: 100%;
+  min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
-  font-family: var(--font-sans);
+  position: relative;
 }
 
-/* Container to split title text on the left and folder on the right */
-.container {
-  width: 100%;
-  max-width: 1200px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 40px;
+/* SECTION 1: Welcome */
+.section-welcome {
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 10%;
 }
 
-/* Title Text styling in the upper left */
-.title-text-container {
+.welcome-text-container {
   color: #ffffff;
-  font-family: var(--font-sans);
   text-align: left;
-  user-select: none;
-  pointer-events: none;
   animation: fadeInLeft 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
-  padding-left: 20px;
-  align-self: flex-start;
-  margin-top: 60px; /* Position it much higher */
 }
 
 .welcome-title {
-  font-size: 56px;
-  font-weight: 800;
+  font-size: 64px;
+  font-weight: 900;
   line-height: 1.1;
-  letter-spacing: -0.01em;
-  color: #ffffff;
-  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
 }
 
 .welcome-subtitle {
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: 0.05em;
+  margin-bottom: 20px;
+}
+
+.designer-name {
+  font-size: 24px;
+  font-weight: 500;
+  text-align: right;
+  margin-top: 40px;
+}
+
+/* SECTION 2: Profile */
+.section-profile {
+  padding: 40px 20px;
+}
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.profile-header h2 {
+  font-size: 60px;
+  font-weight: 800;
+  color: #2c5353;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.profile-header p {
+  font-size: 20px;
   color: #ffffff;
-  margin-top: 8px;
-  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  font-weight: 500;
+}
+
+/* OS Window Frame */
+.os-window {
+  width: auto;
+  height: auto;
+  max-width: 95vw;
+  max-height: 85vh;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+  display: inline-flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.os-window-header {
+  height: 44px;
+  background: #f1f1f1;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-bottom: 1px solid #e1e1e1;
+  position: relative;
+}
+
+.os-dots { display: flex; gap: 8px; }
+.os-dots .dot { width: 13px; height: 13px; border-radius: 50%; }
+.dot.close { background: #ff5f56; }
+.dot.minimize { background: #ffbd2e; }
+.dot.maximize { background: #27c93f; }
+
+.os-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  font-weight: 700;
+  color: #666;
+}
+
+.os-window-content {
+  display: block;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  background: #f9fdfd;
+  padding: 0;
+}
+
+.profile-display-image {
+  height: calc(85vh - 44px);
+  width: auto;
+  max-width: 95vw;
+  display: block;
+  object-fit: contain;
+}
+
+/* SECTION 3: Tools & Folder */
+.section-tools-folder {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+  padding: 0 5%;
+}
+
+.tools-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.tools-header-badge {
+  background: rgba(255, 255, 255, 0.4);
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-weight: 800;
+  color: #ffffff;
+  width: fit-content;
+  font-size: 22px;
+  letter-spacing: 0.05em;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.tools-category h3 {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+}
+
+.badge-group {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.tool-badge {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+}
+
+.color-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+.color-dot.figma { background: #a259ff; }
+.color-dot.stitch { background: #ff7b00; }
+.color-dot.gemini { background: #4285f4; }
+.color-dot.claude { background: #d97757; }
+.color-dot.chatgpt { background: #10a37f; }
+
+.bottom-badges {
+  margin-top: 30px;
+}
+
+.tool-badge.border-only {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  color: #ffffff;
+  box-shadow: none;
 }
 
 /* Slide in animation */
@@ -87,20 +251,15 @@ body {
 }
 
 @media (max-width: 900px) {
-  body {
-    overflow-y: auto;
-  }
-  .container {
-    flex-direction: column;
-    justify-content: center;
-    gap: 40px;
-    padding: 60px 20px;
-  }
-  .title-text-container {
-    text-align: center;
+  .section-welcome {
+    align-items: center;
     padding-left: 0;
-    align-self: center;
-    margin-top: 0;
+  }
+  .welcome-text-container {
+    text-align: center;
+  }
+  .designer-name {
+    text-align: center;
   }
   .welcome-title {
     font-size: 38px;
@@ -108,29 +267,29 @@ body {
   .welcome-subtitle {
     font-size: 20px;
   }
-  .folder-wrapper {
-    transform: scale(0.8) !important;
-    transform-origin: center center !important;
+  .section-tools-folder {
+    flex-direction: column;
+    gap: 40px;
   }
-  .folder-wrapper:hover {
-    transform: scale(0.8) translateY(-15px) !important;
+  .folder-wrapper {
+    transform: scale(0.6) !important;
   }
 }
 
 /* Folder Wrapper */
 .folder-wrapper {
   position: relative;
-  right: 15vw;
+  /* Removed right: 15vw because it is now properly placed in a flex layout */
   width: 680px;
   height: 460px;
   user-select: none;
-  transform: scale(0.8);
-  transform-origin: right center;
+  transform: scale(1.1);
+  transform-origin: center center;
   transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .folder-wrapper:hover {
-  transform: scale(0.8) translateY(-15px);
+  transform: scale(1.1) translateY(-15px);
 }
 
 /* Folder Back Flap */
