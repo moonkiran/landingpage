@@ -53,19 +53,12 @@
         <main class="cards-grid">
 
             <!-- Card 1: Portfolio 1 -->
-            <div class="os-window card-port1">
-                <div class="os-window-header">
-                    <div class="os-dots">
-                        <span class="dot close"></span>
-                        <span class="dot minimize"></span>
-                        <span class="dot maximize"></span>
-                    </div>
-                    <div class="os-title">Portfolio 1</div>
-                </div>
-                <div class="os-window-content card-content">
-                    <img src="img/file.png" alt="Portfolio Icon" class="card-image-only">
-                    <h2 class="card-title">우산비서</h2>
-                    <p class="card-desc">번거로운 날씨 탐색은 줄이고, <br> 내 일상에 딱 맞는 알림만 챙겨주는 똑똑한 인터페이스</p>
+            <div class="portfolio-card card-port1">
+                <div class="portfolio-card-content card-content">
+                    <img src="img/file.png" alt="Portfolio Icon" class="card-image-only modal-trigger"
+                        id="port1-trigger" style="cursor: pointer;">
+                    <h2 class="card-title">USANBISEO</h2>
+
                     <div class="card-buttons">
 
                         <a href="https://usanbiseo.vercel.app/" class="app-link-btn" target="_blank">우산비서 바로 가기</a>
@@ -74,19 +67,12 @@
             </div>
 
             <!-- Card 2: Portfolio 2 -->
-            <div class="os-window card-port2">
-                <div class="os-window-header">
-                    <div class="os-dots">
-                        <span class="dot close"></span>
-                        <span class="dot minimize"></span>
-                        <span class="dot maximize"></span>
-                    </div>
-                    <div class="os-title">Portfolio 2</div>
-                </div>
-                <div class="os-window-content card-content">
-                    <img src="img/file.png" alt="Portfolio Icon" class="card-image-only">
-                    <h2 class="card-title">오토캔버스</h2>
-                    <p class="card-desc">정교한 설계로 다시 그리는 드라이빙의 가치, <br> 오토캔버스에서 시작되는 프리미엄 큐레이션</p>
+            <div class="portfolio-card card-port2">
+                <div class="portfolio-card-content card-content">
+                    <img src="img/file.png" alt="Portfolio Icon" class="card-image-only modal-trigger"
+                        id="port2-trigger" style="cursor: pointer;">
+                    <h2 class="card-title">AUTOCANVAS</h2>
+
                     <div class="card-buttons">
 
                         <a href="https://autocanvas-sigma.vercel.app/" class="app-link-btn" target="_blank">오토캔버스
@@ -172,7 +158,7 @@
 
 
             // Portfolio 1 Modal Logic
-            const port1Card = document.querySelector(".card-port1");
+            const port1Card = document.getElementById("port1-trigger");
             const port1Modal = document.getElementById("portfolio1-modal");
             const port1Close = port1Modal.querySelector(".modal-close");
             const browserBody = port1Modal.querySelector(".browser-body");
@@ -205,7 +191,7 @@
             }
 
             // Portfolio 2 Modal Logic
-            const port2Card = document.querySelector(".card-port2");
+            const port2Card = document.getElementById("port2-trigger");
             const port2Modal = document.getElementById("portfolio2-modal");
             const port2Close = port2Modal.querySelector(".modal-close");
             const port2Iframe = document.getElementById("portfolio2-iframe");
@@ -305,7 +291,7 @@
         }
 
         .header h1 {
-            font-size: 36px;
+            font-size: 60px;
             font-weight: 800;
             color: #2c5353;
             letter-spacing: -0.02em;
@@ -314,7 +300,7 @@
         }
 
         .header p {
-            font-size: 15px;
+            font-size: 20px;
             color: #ffffff;
             font-weight: 500;
         }
@@ -417,9 +403,9 @@
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
+            gap: 500px;
             width: 100%;
-            max-width: 1000px;
+            max-width: 1200px;
             padding: 0 20px;
             box-sizing: border-box;
             opacity: 0;
@@ -427,32 +413,30 @@
             animation: fadeIn 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) 0.4s forwards;
         }
 
-        /* Card OS Window Overrides */
-        .cards-grid .os-window {
+        /* Normal Portfolio Card Layout */
+        .portfolio-card {
             width: 100%;
             height: 100%;
-            max-width: none;
-            max-height: none;
             display: flex;
             flex-direction: column;
             position: relative;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-
-        .cards-grid .os-window:hover {
+        .portfolio-card:hover {
             transform: translateY(-12px);
-            box-shadow: 0 20px 40px rgba(128, 207, 207, 0.25);
-            border-color: var(--card-color);
         }
 
-        .cards-grid .os-window-content {
+        .portfolio-card-content {
             padding: 40px 30px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
             text-align: center;
-            background: #ffffff;
             flex: 1;
             box-sizing: border-box;
             width: 100%;
@@ -483,14 +467,15 @@
 
         /* Card Icon / Graphic */
         .card-image-only {
-            width: 160px;
-            height: 160px;
+            width: 240px;
+            /* 3x larger than previous 80px */
+            height: 240px;
             object-fit: contain;
             margin-bottom: 25px;
             transition: transform 0.4s ease;
         }
 
-        .cards-grid .os-window:hover .card-image-only {
+        .cards-grid .portfolio-card:hover .card-image-only {
             transform: scale(1.1) rotate(5deg);
         }
 
@@ -513,43 +498,53 @@
 
         /* Card Typography */
         .card-title {
-            font-size: 20px;
+            font-size: 30px;
+            /* 2x of 20px */
             font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 12px;
+            color: #ffffff;
+            /* White text */
+            margin-bottom: 16px;
         }
 
         .card-desc {
-            font-size: 13px;
-            color: #7f8c8d;
+            font-size: 15px;
+            /* 2x of 13px */
+            color: #ffffff;
+            /* White text */
             line-height: 1.6;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             font-weight: 500;
         }
 
         /* Card Button style */
-        .card-btn {
+        .app-link-btn {
             margin-top: auto;
-            font-size: 12px;
+            font-size: 24px;
+            /* 2x of 12px */
             font-weight: 700;
-            color: var(--card-color);
+            color: #ffffff;
+            /* Keep white, or use var(--card-color) depending on design, user asked white for text, button is usually styled. Let's make it white */
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            padding: 8px 16px;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.8);
+            padding: 16px 32px;
+            /* 2x of 8px 16px */
+            border-radius: 40px;
+            /* 2x of 20px */
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid #ffffff;
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 160px;
+            width: 320px;
+            /* 2x of 160px */
+            text-decoration: none;
         }
 
-        .card:hover .card-btn {
-            background: var(--card-color);
-            color: #ffffff;
-            border-color: var(--card-color);
+        .portfolio-card:hover .app-link-btn {
+            background: #ffffff;
+            color: #2c5353;
+            border-color: #ffffff;
         }
 
         /* Back Button */
