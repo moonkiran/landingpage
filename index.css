@@ -476,35 +476,140 @@ body {
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
+  /* Prevent horizontal overflow strictly */
+  body, html {
+    overflow-x: hidden;
+    width: 100vw;
+    max-width: 100%;
+  }
+
+  /* SECTION 1 */
   .section-welcome {
-    align-items: center;
+    padding-top: 12vh;
     padding-left: 0;
+    align-items: center;
+    justify-content: flex-start;
   }
 
   .welcome-text-container {
     text-align: center;
-  }
-
-  .designer-name {
-    text-align: center;
+    width: 100%;
+    padding: 0 20px;
+    margin-bottom: 30px;
+    position: static;
+    z-index: 10;
+    order: -1; /* Move text above stats */
   }
 
   .welcome-title {
-    font-size: 38px;
+    font-size: 36px;
+    margin-bottom: 12px;
+    line-height: 1.2;
   }
 
   .welcome-subtitle {
-    font-size: 20px;
+    font-size: 15px;
   }
 
+  .welcome-stats {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 100vw;
+    padding: 0 10px;
+    transform: none; /* No scaling, use raw sizes */
+  }
+
+  .stat-card.os-style {
+    min-width: 140px; /* smaller for mobile */
+    flex: 1 1 45%; /* Two per row */
+  }
+
+  #stat1, #stat2, #stat3 {
+    position: static;
+    margin: 0 !important;
+    align-self: stretch !important;
+  }
+
+  .stat-card.os-style .stat-number {
+    font-size: 32px;
+  }
+  .stat-card.os-style .stat-label {
+    font-size: 14px;
+  }
+
+  .scroll-indicator {
+    bottom: 2%;
+    transform: translateX(-50%) scale(0.6);
+  }
+
+  /* SECTION 2 */
+  .section-profile {
+    padding: 60px 15px;
+  }
+
+  .profile-header h2 {
+    font-size: 32px;
+  }
+
+  .profile-header p {
+    font-size: 15px;
+  }
+
+  .os-window {
+    max-width: 100%;
+  }
+
+  .os-window-content {
+    padding: 15px 10px;
+  }
+
+  .profile-display-image {
+    max-height: 40vh;
+  }
+
+  /* SECTION 3 */
   .section-tools-folder {
+    padding: 40px 15px 120px 15px; /* Added extra bottom padding so background extends */
+    width: 100vw;
+  }
+
+  .tools-folder-content {
     flex-direction: column;
     gap: 40px;
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  .tools-panel {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .badge-group {
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
   .folder-wrapper {
-    transform: scale(0.6) !important;
+    transform: scale(0.48) !important;
+    transform-origin: top center;
+    /* Negative margins allow the 680px box to center properly in a small screen without clamping to the left edge */
+    margin-left: -200px;
+    margin-right: -200px;
+    margin-bottom: -180px; 
+  }
+
+  .portfolio-label {
+    font-size: 56px; 
+    bottom: -100px;
   }
 }
 
