@@ -31,7 +31,7 @@
         <main class="cards-grid">
 
             <!-- Card 1: Profile -->
-            <a href="#profile" class="card card-profile">
+            <div class="card card-profile">
                 <div class="card-icon-wrapper">
                     <!-- Profile avatar icon -->
                     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#80cfcf" stroke-width="2"
@@ -42,11 +42,11 @@
                 </div>
                 <h2 class="card-title">프로필</h2>
                 <p class="card-desc">작성자에 대한 간략한 소개, 핵심 역량 및 기술 스택 정보를 담은 소개 페이지입니다.</p>
-                <span class="card-btn">자세히 보기</span>
-            </a>
+                <span class="card-btn">포트폴리오 보기</span>
+            </div>
 
             <!-- Card 2: Portfolio 1 -->
-            <a href="#portfolio1" class="card card-port1">
+            <div class="card card-port1">
                 <div class="card-icon-wrapper">
                     <!-- Layout/Design portfolio icon -->
                     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#d48295" stroke-width="2"
@@ -59,11 +59,12 @@
                 </div>
                 <h2 class="card-title">포트폴리오1</h2>
                 <p class="card-desc">사용자 경험을 극대화한 UX/UI 설계 및 레이아웃 그리드 시스템 중심의 웹 디자인 작업물입니다.</p>
-                <span class="card-btn">자세히 보기</span>
-            </a>
+                <span class="card-btn">포트폴리오 보기</span>
+                <a href="https://usanbiseo.vercel.app/" class="app-link-btn" target="_blank">우산비서 바로 가기</a>
+            </div>
 
             <!-- Card 3: Portfolio 2 -->
-            <a href="#portfolio2" class="card card-port2">
+            <div class="card card-port2">
                 <div class="card-icon-wrapper">
                     <!-- Branding portfolio icon -->
                     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#fb9d6a" stroke-width="2"
@@ -73,8 +74,9 @@
                 </div>
                 <h2 class="card-title">포트폴리오2</h2>
                 <p class="card-desc">독창적인 아이디어를 바탕으로 설계한 브랜드 아이덴티티 및 크리에이티브 시각 디자인 작업물입니다.</p>
-                <span class="card-btn">자세히 보기</span>
-            </a>
+                <span class="card-btn">포트폴리오 보기</span>
+                <a href="https://autocanvas-sigma.vercel.app/" class="app-link-btn" target="_blank">오토캔버스 바로가기</a>
+            </div>
 
         </main>
 
@@ -104,9 +106,6 @@
             <div class="browser-body">
                 <img src="img/heropage.jpg" alt="Hero Page" class="portfolio-flow-img">
                 <img src="img/mainpage (2).jpg" alt="Main Page" class="portfolio-flow-img">
-                <div class="app-link-container">
-                    <a href="https://usanbiseo.vercel.app/" class="app-link-btn" target="_blank">우산비서 바로 가기</a>
-                </div>
             </div>
         </div>
     </div>
@@ -127,6 +126,14 @@
 
             // Elements that trigger custom cursor "Click" hover state
             const clickables = document.querySelectorAll(".card, .back-btn, .modal-close, .modal, .app-link-btn");
+
+            // Prevent opening modal when clicking on the link buttons inside the cards
+            const linkBtns = document.querySelectorAll(".app-link-btn");
+            linkBtns.forEach(btn => {
+                btn.addEventListener("click", (e) => {
+                    e.stopPropagation(); // Stop click from bubbling up to .card
+                });
+            });
 
             // Custom floating cursor tracking
             document.addEventListener("mousemove", (e) => {
@@ -425,6 +432,10 @@
             background: rgba(255, 255, 255, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.8);
             transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 160px;
         }
 
         .card:hover .card-btn {
@@ -643,48 +654,43 @@
             display: block;
         }
 
-        .app-link-container {
-            padding: 50px 20px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #000000;
-            flex-shrink: 0;
-        }
-
         .app-link-btn {
+            margin-top: 10px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--card-color);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+            text-decoration: none;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 16px 42px;
-            font-size: 16px;
-            font-weight: 700;
-            color: #ffffff;
-            background: #111111;
-            border-radius: 30px;
-            text-decoration: none;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, background-color 0.2s ease;
+            width: 160px;
             cursor: none !important;
+            z-index: 5;
         }
 
         .app-link-btn:hover {
-            transform: translateY(-5px) scale(1.03);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
-            background: #222222;
+            background: var(--card-color);
+            color: #ffffff;
+            border-color: var(--card-color);
+            transform: scale(1.05);
         }
 
         .app-link-btn:active {
-            transform: translateY(-1px) scale(0.98);
-            background: #000000;
+            transform: scale(0.95);
         }
 
         /* Portfolio 2 Iframe Styles */
         .portfolio-iframe {
             width: 100%;
             max-width: 1400px;
-            height: 100%;
+            flex-grow: 1;
             border: none;
             background: #ffffff;
             display: block;
