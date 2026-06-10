@@ -249,6 +249,15 @@
             /* Global custom cursor integration */
         }
 
+        @media (hover: none) and (pointer: coarse), (max-width: 768px) {
+            * {
+                cursor: auto !important;
+            }
+            .custom-cursor {
+                display: none !important;
+            }
+        }
+
         body {
             background: url('img/imaccover.png') no-repeat center center fixed;
             background-size: cover;
