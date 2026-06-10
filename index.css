@@ -476,35 +476,140 @@ body {
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
+  /* Prevent horizontal overflow strictly */
+  body, html {
+    overflow-x: hidden;
+    width: 100vw;
+    max-width: 100%;
+  }
+
+  /* SECTION 1 */
   .section-welcome {
-    align-items: center;
+    padding-top: 12vh;
     padding-left: 0;
+    align-items: center;
+    justify-content: flex-start;
   }
 
   .welcome-text-container {
     text-align: center;
-  }
-
-  .designer-name {
-    text-align: center;
+    width: 100%;
+    padding: 0 20px;
+    margin-bottom: 30px;
+    position: static;
+    z-index: 10;
+    order: -1; /* Move text above stats */
   }
 
   .welcome-title {
-    font-size: 38px;
+    font-size: 36px;
+    margin-bottom: 12px;
+    line-height: 1.2;
   }
 
   .welcome-subtitle {
-    font-size: 20px;
+    font-size: 15px;
   }
 
+  .welcome-stats {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 100vw;
+    padding: 0 10px;
+    transform: none; /* No scaling, use raw sizes */
+  }
+
+  .stat-card.os-style {
+    min-width: 140px; /* smaller for mobile */
+    flex: 1 1 45%; /* Two per row */
+  }
+
+  #stat1, #stat2, #stat3 {
+    position: static;
+    margin: 0 !important;
+    align-self: stretch !important;
+  }
+
+  .stat-card.os-style .stat-number {
+    font-size: 32px;
+  }
+  .stat-card.os-style .stat-label {
+    font-size: 14px;
+  }
+
+  .scroll-indicator {
+    bottom: 2%;
+    transform: translateX(-50%) scale(0.6);
+  }
+
+  /* SECTION 2 */
+  .section-profile {
+    padding: 60px 15px;
+  }
+
+  .profile-header h2 {
+    font-size: 32px;
+  }
+
+  .profile-header p {
+    font-size: 15px;
+  }
+
+  .os-window {
+    max-width: 100%;
+  }
+
+  .os-window-content {
+    padding: 15px 10px;
+  }
+
+  .profile-display-image {
+    max-height: 40vh;
+  }
+
+  /* SECTION 3 */
   .section-tools-folder {
+    padding: 40px 15px 120px 15px; /* Added extra bottom padding so background extends */
+    width: 100vw;
+  }
+
+  .tools-folder-content {
     flex-direction: column;
     gap: 40px;
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  .tools-panel {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .badge-group {
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
   .folder-wrapper {
-    transform: scale(0.6) !important;
+    transform: scale(0.48) !important;
+    transform-origin: top center;
+    /* Negative margins allow the 680px box to center properly in a small screen without clamping to the left edge */
+    margin-left: -200px;
+    margin-right: -200px;
+    margin-bottom: -180px; 
+  }
+
+  .portfolio-label {
+    font-size: 56px; 
+    bottom: -100px;
   }
 }
 
@@ -871,4 +976,215 @@ body {
 .custom-cursor.show-text .custom-cursor-text {
   opacity: 1;
   transform: scale(1);
+}
+
+/* SECTION 3: Stack (Redesign) */
+.section-stack {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 5%;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.stack-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* Header */
+.stack-header {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.stack-title {
+  font-family: 'Dela Gothic One', sans-serif;
+  font-size: 54px;
+  line-height: 1.1;
+  color: #ffffff;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.stack-subtitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.2em;
+}
+
+/* Glassmorphism Common */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), inset 0 0 0 1px rgba(255,255,255,0.1);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(255,255,255,0.2);
+}
+
+/* Process Cards */
+.process-cards {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.process-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  min-height: 380px;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.card-bg-icon {
+  position: absolute;
+  right: -20px;
+  bottom: -40px;
+  font-size: 180px;
+  opacity: 0.05;
+  pointer-events: none;
+  filter: grayscale(100%);
+}
+
+.card-content {
+  flex: 1;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.card-step {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 12px;
+  letter-spacing: 0.05em;
+}
+
+.card-desc {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 8px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.card-keywords {
+  font-size: 14px;
+  color: #80cfcf;
+  font-weight: 700;
+  margin-bottom: 24px;
+  letter-spacing: 0.02em;
+}
+
+.card-logos {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.logo-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.logo-item.border-only {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Tech Summary */
+.tech-summary {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.summary-card {
+  flex: 1;
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.summary-title {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.1em;
+  font-weight: 700;
+}
+
+.summary-logos {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Mobile Responsiveness for Section Stack */
+@media (max-width: 768px) {
+  .stack-title {
+    font-size: 36px;
+  }
+  
+  .process-cards {
+    flex-direction: column;
+  }
+  
+  .process-card {
+    padding: 30px 20px;
+    min-height: auto;
+  }
+  
+  .card-bg-icon {
+    font-size: 120px;
+    right: -10px;
+    bottom: -10px;
+  }
+  
+  .card-step {
+    font-size: 24px;
+  }
+  
+  .card-desc {
+    font-size: 15px;
+  }
+  
+  .tech-summary {
+    flex-direction: column;
+  }
 }

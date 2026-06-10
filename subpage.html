@@ -73,7 +73,7 @@
                     <line x1="19" y1="12" x2="5" y2="12" />
                     <polyline points="12 19 5 12 12 5" />
                 </svg>
-                돌아가기
+                Back
             </a>
         </div>
     </div>
@@ -84,7 +84,7 @@
         <div class="modal-content portfolio-modal-content">
             <div class="browser-body">
                 <img src="img/heropage.jpg" alt="Hero Page" class="portfolio-flow-img">
-                <img src="img/mainpage (2).jpg" alt="Main Page" class="portfolio-flow-img">
+                <img src="img/mainpage.jpg" alt="Main Page" class="portfolio-flow-img">
             </div>
         </div>
     </div>
@@ -101,7 +101,7 @@
         document.addEventListener("DOMContentLoaded", () => {
             const cursor = document.getElementById("custom-cursor");
             // Elements that trigger custom cursor "Click" hover state
-            const clickables = document.querySelectorAll(".card, .back-btn, .app-link-btn");
+            const clickables = document.querySelectorAll(".card-image-only, .back-btn, .app-link-btn");
             // Prevent opening modal when clicking on the link buttons inside the cards
             const linkBtns = document.querySelectorAll(".app-link-btn");
             linkBtns.forEach(btn => {
@@ -648,7 +648,7 @@
         .modal-content {
             position: relative;
             max-width: 90%;
-            max-height: 90%;
+            max-height: 100%;
             transform: scale(0.85);
             transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             display: flex;
@@ -695,7 +695,7 @@
         .portfolio-modal-content {
             width: 1800px;
             max-width: 96%;
-            height: 85vh;
+            height: 100vh;
             background: #000000;
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 16px;
@@ -792,7 +792,26 @@
         @media (max-width: 768px) {
             .cards-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 60px;
+            }
+
+            .header h1 {
+                font-size: 42px;
+            }
+
+            .app-link-btn {
+                width: 100%;
+                font-size: 24px;
+                padding: 20px 0;
+            }
+
+            .card-image-only {
+                width: 180px;
+                height: 180px;
+            }
+
+            .portfolio-card-content {
+                padding: 20px 15px;
             }
         }
     </style>

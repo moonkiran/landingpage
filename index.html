@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Landing Page</title>
     <meta name="description" content="포트폴리오 폴더 테마의 크리에이티브 랜딩 페이지">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
 </head>
 
@@ -71,7 +71,7 @@
 
             <!-- Main Text -->
             <div class="welcome-text-container">
-                <h1 class="welcome-title">FROM IDEA<br>TO EXPERIENCE</h1>
+                <h1 class="welcome-title">WELCOME TO <br> MY DESIGN <br> UNIVERSE</h1>
                 <p class="welcome-subtitle"></p>
             </div>
 
@@ -106,108 +106,161 @@
             </div>
         </section>
 
-        <!-- Section 3: Tools & Folder -->
-        <section class="section-full section-tools-folder">
+        <!-- Section 3: Stack (Redesign) -->
+        <section class="section-full section-stack">
+            <div class="stack-container">
+                <!-- Top Left: Title -->
+                <div class="stack-header">
+                    <h2 class="stack-title">DATA + AI + DESIGN:<br>A FUSION OF SKILLS</h2>
+                    <p class="stack-subtitle">MY GROWTH PATH</p>
+                </div>
+
+                <!-- Middle: Glassmorphism Process Cards -->
+                <div class="process-cards">
+                    <!-- Card 1 -->
+                    <div class="process-card glass-card">
+                        <div class="card-bg-icon">📊</div>
+                        <div class="card-content">
+                            <h3 class="card-step">01 ANALYZING</h3>
+                            <p class="card-desc">AI를 리서치 파트너로 활용하여 문제 정의 및 사용자 경험 논리를 설계합니다.</p>
+                            <p class="card-keywords">UX Research, User Journey, AI-powered Insights.</p>
+                            <div class="card-logos">
+                                <span class="logo-item"><span class="color-dot gemini"></span> Gemini</span>
+                                <span class="logo-item"><span class="color-dot claude"></span> Claude</span>
+                                <span class="logo-item"><span class="color-dot chatgpt"></span> ChatGPT</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="process-card glass-card">
+                        <div class="card-bg-icon">🎨</div>
+                        <div class="card-content">
+                            <h3 class="card-step">02 DECORATING</h3>
+                            <p class="card-desc">설계된 논리를 바탕으로 직관적이고 심미적인 UI 디자인을 구현합니다.</p>
+                            <p class="card-keywords">UI Design, Prototyping, Compelling Visuals.</p>
+                            <div class="card-logos">
+                                <span class="logo-item"><span class="color-dot figma"></span> Figma</span>
+                                <span class="logo-item"><span class="color-dot stitch"></span> Stitch AI</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="process-card glass-card">
+                        <div class="card-bg-icon">💻</div>
+                        <div class="card-content">
+                            <h3 class="card-step">03 MAKING</h3>
+                            <p class="card-desc">개발 이해도를 바탕으로 디자인을 실제 프로덕트로 구현하고 배포합니다.</p>
+                            <p class="card-keywords">Frontend understanding, Deployment, Component Library.</p>
+                            <div class="card-logos">
+                                <span class="logo-item border-only">GitHub</span>
+                                <span class="logo-item border-only">Vercel</span>
+                                <span class="logo-item border-only">Firebase</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom: Tech Stack Summary -->
+                <div class="tech-summary">
+                    <div class="summary-card glass-card">
+                        <h4 class="summary-title">DESIGN</h4>
+                        <div class="summary-logos">
+                            <span class="logo-item" style="padding: 4px 12px;"><span class="color-dot figma"></span> Figma</span>
+                            <span class="logo-item" style="padding: 4px 12px;"><span class="color-dot stitch"></span> Stitch</span>
+                        </div>
+                    </div>
+                    <div class="summary-card glass-card">
+                        <h4 class="summary-title">AI</h4>
+                        <div class="summary-logos">
+                            <span class="logo-item" style="padding: 4px 12px;"><span class="color-dot gemini"></span> Gemini</span>
+                            <span class="logo-item" style="padding: 4px 12px;"><span class="color-dot claude"></span> Claude</span>
+                            <span class="logo-item" style="padding: 4px 12px;"><span class="color-dot chatgpt"></span> ChatGPT</span>
+                        </div>
+                    </div>
+                    <div class="summary-card glass-card">
+                        <h4 class="summary-title">DEV ENV</h4>
+                        <div class="summary-logos">
+                            <span class="logo-item border-only" style="padding: 4px 12px;">GitHub</span>
+                            <span class="logo-item border-only" style="padding: 4px 12px;">Vercel</span>
+                            <span class="logo-item border-only" style="padding: 4px 12px;">Firebase</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Works -->
+        <section class="section-full section-works">
             <header class="profile-header">
-                <h2>Stack & Works</h2>
+                <h2>Works</h2>
                 <p>경험을 디자인하는 과정의 결과물</p>
             </header>
-            
+
             <div class="tools-folder-content">
-                <div class="tools-panel">
-                <div class="tools-header-badge">TOOLS USED</div>
+                <!-- Existing Folder Wrapper -->
+                <div class="folder-wrapper">
 
-                <div class="tools-category">
-                    <h3 class="tools-cat-title">DESIGN</h3>
-                    <div class="badge-group">
-                        <span class="tool-badge"><span class="color-dot figma"></span> Figma</span>
-                        <span class="tool-badge"><span class="color-dot stitch"></span> Stitch AI</span>
+                    <!-- Folder Back Flap -->
+                    <div class="folder-back">
+                        <!-- Tab: ABOUT ME -->
+                        <div class="tab-about-me" id="tab-about-me">
+                            <span>ABOUT ME</span>
+                        </div>
                     </div>
-                </div>
 
-                <div class="tools-category">
-                    <h3 class="tools-cat-title">AI</h3>
-                    <div class="badge-group">
-                        <span class="tool-badge"><span class="color-dot gemini"></span> Gemini</span>
-                        <span class="tool-badge"><span class="color-dot claude"></span> Claude</span>
-                        <span class="tool-badge"><span class="color-dot chatgpt"></span> ChatGPT</span>
-                    </div>
-                </div>
+                    <!-- Folder Inserts (File Icons/Tabs) -->
+                    <div class="folder-inserts">
 
-                <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 30px;">
-                    <div class="badge-group">
-                        <span class="tool-badge border-only"><span class="icon-dev">⚙️</span> Dev tools</span>
-                    </div>
-                    <div class="badge-group">
-                        <span class="tool-badge border-only">GitHub</span>
-                        <span class="tool-badge border-only">Vercel</span>
-                        <span class="tool-badge border-only">Firebase</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Existing Folder Wrapper -->
-            <div class="folder-wrapper">
-
-                <!-- Folder Back Flap -->
-                <div class="folder-back">
-                    <!-- Tab: ABOUT ME -->
-                    <div class="tab-about-me" id="tab-about-me">
-                        <span>ABOUT ME</span>
-                    </div>
-                </div>
-
-                <!-- Folder Inserts (File Icons/Tabs) -->
-                <div class="folder-inserts">
-
-                    <!-- Insert 1: UXUI DESIGN (Purple Starburst) -->
-                    <a href="subpage.html" class="insert-uxui" id="insert-uxui" title="UX/UI Design Portfolio">
-                        <div class="starburst-container">
-                            <svg width="100%" height="100%" viewBox="0 0 160 160">
-                                <polygon id="starburst-uxui" points="" fill="#9a679c" />
-                            </svg>
-                            <div class="insert-text">
-                                UXUI<br>DESIGN
+                        <!-- Insert 1: UXUI DESIGN (Purple Starburst) -->
+                        <a href="subpage.html" class="insert-uxui" id="insert-uxui" title="UX/UI Design Portfolio">
+                            <div class="starburst-container">
+                                <svg width="100%" height="100%" viewBox="0 0 160 160">
+                                    <polygon id="starburst-uxui" points="" fill="#9a679c" />
+                                </svg>
+                                <div class="insert-text">
+                                    UXUI<br>DESIGN
+                                </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
 
-                    <!-- Insert 2: LAYOUT (Pink Oval) -->
-                    <a href="subpage.html" class="insert-layout" id="insert-layout" title="Layout Design Portfolio">
-                        <div class="oval-shape">
-                            <span>LAYOUT</span>
-                        </div>
-                    </a>
-
-                    <!-- Insert 3: IDEA (Green Starburst) -->
-                    <a href="subpage.html" class="insert-idea" id="insert-idea" title="Idea & Strategy Portfolio">
-                        <div class="starburst-container">
-                            <svg width="100%" height="100%" viewBox="0 0 160 160">
-                                <polygon id="starburst-idea" points="" fill="#52c383" />
-                            </svg>
-                            <div class="insert-text">
-                                IDEA
+                        <!-- Insert 2: LAYOUT (Pink Oval) -->
+                        <a href="subpage.html" class="insert-layout" id="insert-layout" title="Layout Design Portfolio">
+                            <div class="oval-shape">
+                                <span>LAYOUT</span>
                             </div>
-                        </div>
+                        </a>
+
+                        <!-- Insert 3: IDEA (Green Starburst) -->
+                        <a href="subpage.html" class="insert-idea" id="insert-idea" title="Idea & Strategy Portfolio">
+                            <div class="starburst-container">
+                                <svg width="100%" height="100%" viewBox="0 0 160 160">
+                                    <polygon id="starburst-idea" points="" fill="#52c383" />
+                                </svg>
+                                <div class="insert-text">
+                                    IDEA
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Insert 4: BRANDING (Orange Dome) -->
+                        <a href="subpage.html" class="insert-branding" id="insert-branding" title="Branding Portfolio">
+                            <div class="dome-shape">
+                                <span>BRANDING</span>
+                            </div>
+                        </a>
+
+                    </div>
+
+                    <!-- Folder Front Flap -->
+                    <a href="subpage.html" class="folder-front" id="folder-front" title="">
                     </a>
 
-                    <!-- Insert 4: BRANDING (Orange Dome) -->
-                    <a href="subpage.html" class="insert-branding" id="insert-branding" title="Branding Portfolio">
-                        <div class="dome-shape">
-                            <span>BRANDING</span>
-                        </div>
-                    </a>
+                    <!-- Label Below Folder -->
+                    <div class="portfolio-label">PORTFOLIO</div>
 
                 </div>
-
-                <!-- Folder Front Flap -->
-                <a href="subpage.html" class="folder-front" id="folder-front" title="">
-                </a>
-
-                <!-- Label Below Folder -->
-                <div class="portfolio-label">PORTFOLIO</div>
-
-            </div>
             </div> <!-- End tools-folder-content -->
         </section>
     </div>
