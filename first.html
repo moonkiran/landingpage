@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to My Design Universe</title>
+    <meta name="description" content="Welcome page before portfolio">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Dancing+Script:wght@500&family=Montserrat:wght@700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #e9e9e9;
+            /* Light gray background */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Title Area */
+        .title-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .title-section h1 {
+            font-family: 'Dela Gothic One', sans-serif;
+            font-size: 56px;
+            color: #000000;
+            line-height: 1.2;
+            margin: 0;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+        }
+
+        /* iMac Wrapper (for scaling) */
+        .imac-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transform-origin: top center;
+        }
+
+        /* iMac Frame */
+        .imac-frame {
+            width: 800px;
+            height: 480px;
+            background: #111111;
+            border-radius: 30px;
+            padding: 24px 24px 80px 24px;
+            /* thick borders and thick bottom chin */
+            position: relative;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2), inset 0 0 0 2px #333;
+            box-sizing: border-box;
+        }
+
+        /* Chin (Silver bottom) */
+        .imac-chin {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: linear-gradient(to bottom, #d6d6d6, #c2c2c2);
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Apple Logo */
+        .apple-logo {
+            width: 28px;
+            height: 32px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="%23222" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.3 48.6-.8 90.4-86.8 102.7-111.4-40.3-24.6-61.9-63-61.8-99.2zm-101.4-180.1c22.7-27.6 37.6-61.3 33.6-96.6-29.3 1.2-66.2 19.8-89.8 47.9-19.9 23.3-37.1 58.7-32.3 92.8 33.2 2.6 66.8-17.2 88.5-44.1z"/></svg>') no-repeat center;
+            background-size: contain;
+        }
+
+        /* iMac Stand */
+        .imac-stand {
+            width: 140px;
+            height: 90px;
+            background: linear-gradient(to bottom, #cccccc, #aaaaaa);
+            clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);
+            margin-top: -10px;
+            /* pull under the chin */
+            position: relative;
+            z-index: -1;
+            box-shadow: inset 0 -5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .imac-stand-base {
+            width: 220px;
+            height: 12px;
+            background: linear-gradient(to bottom, #d4d4d4, #b0b0b0);
+            border-radius: 6px 6px 0 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Screen Display */
+        .imac-screen {
+            width: 100%;
+            height: 100%;
+            background: url('img/imaccover.png') no-repeat center center;
+            background-size: cover;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #000;
+            box-sizing: border-box;
+            cursor: pointer;
+            /* Click to enter */
+            transition: opacity 0.3s;
+        }
+
+        .imac-screen:hover {
+            opacity: 0.95;
+        }
+
+        /* Screen Elements */
+        .screen-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Dancing Script', cursive;
+            font-size: 46px;
+            color: #111;
+            white-space: nowrap;
+            letter-spacing: 0.05em;
+        }
+
+        /* Folders on Desktop */
+        .desktop-folders {
+            position: absolute;
+            left: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .folder-icon {
+            width: 48px;
+            height: 34px;
+            background: #6ebbf5;
+            border-radius: 4px;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .folder-icon::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 0;
+            width: 18px;
+            height: 10px;
+            background: #6ebbf5;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+        }
+
+        .folder-icon::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #8ecfff;
+            border-radius: 4px;
+            border-top-left-radius: 0;
+        }
+
+        /* OS Windows on Desktop */
+        .desktop-windows {
+            position: absolute;
+            right: 80px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .os-window {
+            width: 180px;
+            height: 100px;
+            background: #ffffff;
+            border-radius: 6px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            border: 1px solid #eeeeee;
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Positioning the three windows to overlap like the image */
+        .window-1 {
+            top: -110px;
+            right: -10px;
+            z-index: 1;
+        }
+
+        .window-2 {
+            top: -30px;
+            right: 120px;
+            z-index: 2;
+        }
+
+        .window-3 {
+            top: 50px;
+            right: 20px;
+            z-index: 3;
+        }
+
+        .os-header {
+            height: 18px;
+            background: #f1f1f1;
+            border-bottom: 1px solid #ddd;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            display: flex;
+            align-items: center;
+            padding: 0 8px;
+            gap: 5px;
+        }
+
+        .os-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .dot-red {
+            background: #ff5f56;
+        }
+
+        .dot-yel {
+            background: #ffbd2e;
+        }
+
+        .dot-grn {
+            background: #27c93f;
+        }
+
+        .os-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .os-num {
+            font-size: 16px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .os-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: #000;
+            letter-spacing: 0.05em;
+        }
+
+        /* Enter Hint */
+        .enter-hint {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #666;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 700;
+            opacity: 0.7;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.5;
+            }
+        }
+
+        /* Responsiveness */
+        @media (max-width: 900px) {
+            .imac-wrapper {
+                transform: scale(0.7);
+            }
+
+            .title-section h1 {
+                font-size: 42px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .imac-wrapper {
+                transform: scale(0.45);
+            }
+
+            .title-section h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Title -->
+    <div class="title-section">
+        <h1>WELCOME TO<br>MY DESIGN UNIVERSE</h1>
+    </div>
+
+    <!-- iMac Wrapper -->
+    <div class="imac-wrapper">
+        <div class="imac-frame">
+            <!-- iMac Screen Area (Clickable to index.html) -->
+            <div class="imac-screen" onclick="window.location.href='index.html'" title="Click to enter">
+                <!-- Cursive Text -->
+                <div class="screen-text">Designing for better experiences</div>
+
+                <!-- Folders -->
+                <div class="desktop-folders">
+                    <div class="folder-icon"></div>
+                    <div class="folder-icon" style="margin-left: 20px;"></div>
+                    <div class="folder-icon" style="margin-left: 5px;"></div>
+                </div>
+
+                <!-- OS Windows -->
+                <div class="desktop-windows">
+                    <div class="os-window window-1">
+                        <div class="os-header">
+                            <div class="os-dot dot-red"></div>
+                            <div class="os-dot dot-yel"></div>
+                            <div class="os-dot dot-grn"></div>
+                        </div>
+                        <div class="os-body">
+                            <div class="os-num">2</div>
+                            <div class="os-label">PROJECTS</div>
+                        </div>
+                    </div>
+                    <div class="os-window window-2">
+                        <div class="os-header">
+                            <div class="os-dot dot-red"></div>
+                            <div class="os-dot dot-yel"></div>
+                            <div class="os-dot dot-grn"></div>
+                        </div>
+                        <div class="os-body">
+                            <div class="os-num">8+</div>
+                            <div class="os-label">TOOLS</div>
+                        </div>
+                    </div>
+                    <div class="os-window window-3">
+                        <div class="os-header">
+                            <div class="os-dot dot-red"></div>
+                            <div class="os-dot dot-yel"></div>
+                            <div class="os-dot dot-grn"></div>
+                        </div>
+                        <div class="os-body">
+                            <div class="os-num">100%</div>
+                            <div class="os-label">VIBE CODED</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- iMac Chin -->
+            <div class="imac-chin">
+                <div class="apple-logo"></div>
+            </div>
+        </div>
+
+        <!-- iMac Stand -->
+        <div class="imac-stand"></div>
+        <div class="imac-stand-base"></div>
+    </div>
+
+    <!-- Enter Instruction -->
+    <div class="enter-hint">Click the screen to enter</div>
+
+</body>
+
+</html>
