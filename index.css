@@ -431,27 +431,18 @@ body {
   width: 14px;
   height: 14px;
   border-radius: 50%;
+  background: #80cfcf;
 }
 
-.color-dot.figma {
-  background: #a259ff;
-}
-
-.color-dot.stitch {
-  background: #ff7b00;
-}
-
-.color-dot.gemini {
-  background: #4285f4;
-}
-
-.color-dot.claude {
-  background: #d97757;
-}
-
-.color-dot.chatgpt {
-  background: #10a37f;
-}
+.color-dot.figma { background: #d48295; }
+.color-dot.stitch { background: #fb9d6a; }
+.color-dot.gemini { background: #9a679c; }
+.color-dot.claude { background: #d48295; }
+.color-dot.chatgpt { background: #52c383; }
+.color-dot.github { background: #9a679c; }
+.color-dot.vercel { background: #fb9d6a; }
+.color-dot.firebase { background: #d48295; }
+.color-dot.antigravity { background: #52c383; }
 
 .bottom-badges {
   margin-top: 30px;
@@ -1025,7 +1016,7 @@ body {
 .stack-subtitle {
   font-size: 18px;
   font-weight: 800;
-  color: #2c5353;
+  color: #80cfcf;
   letter-spacing: 0.2em;
 }
 
@@ -1151,10 +1142,11 @@ body {
 }
 
 .summary-title {
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.8);
+  font-size: 18px;
+  color: #000000;
   letter-spacing: 0.1em;
-  font-weight: 700;
+  font-weight: 800;
+  margin-bottom: 12px;
 }
 
 .summary-logos {
