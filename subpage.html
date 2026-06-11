@@ -316,7 +316,6 @@
 
     <!-- Lightbox for Image Zoom -->
     <div id="lightbox" class="lightbox">
-        <span class="lightbox-close">&times;</span>
         <div class="lightbox-slider"></div>
     </div>
 
@@ -482,7 +481,6 @@
             // Lightbox Logic for Design Gallery Cards (CSS Scroll Snap Carousel)
             const lightbox = document.getElementById("lightbox");
             const lightboxSlider = lightbox.querySelector(".lightbox-slider");
-            const lightboxClose = lightbox.querySelector(".lightbox-close");
             const appTaskCards = document.querySelectorAll(".app-task-card");
 
             appTaskCards.forEach(card => {
@@ -519,21 +517,30 @@
                             lightbox.classList.remove("scrollable-lightbox");
                         }
 
+                        // Toggle single-image class for single image cards
+                        if (images.length === 1) {
+                            lightbox.classList.add("single-image");
+                        } else {
+                            lightbox.classList.remove("single-image");
+                        }
+
                         // Open lightbox
                         lightbox.classList.add("open");
 
-                        // If multiple images, initially scroll to index 1 (the first real slide 'A') instantly
-                        if (images.length > 1) {
-                            setTimeout(() => {
-                                const slideWidth = lightboxSlider.querySelector(".lightbox-content").getBoundingClientRect().width + 30;
-                                lightboxSlider.style.scrollBehavior = "auto";
-                                lightboxSlider.scrollLeft = slideWidth;
-                                lightboxSlider.offsetHeight; // reflow
-                                lightboxSlider.style.scrollBehavior = "smooth";
-                            }, 50); // Small delay to let browser render slides
-                        } else {
-                            lightboxSlider.scrollLeft = 0;
-                        }
+                        // Center the active slide horizontally using native browser API
+                        setTimeout(() => {
+                            const slides = lightboxSlider.querySelectorAll(".lightbox-content");
+                            if (lightbox.classList.contains("scrollable-lightbox")) {
+                                lightbox.scrollTop = 0;
+                            } else {
+                                if (images.length > 1 && slides.length > 1) {
+                                    // Scroll to index 1 (first real slide 'A')
+                                    slides[1].scrollIntoView({ behavior: "auto", inline: "center", block: "nearest" });
+                                } else if (slides.length > 0) {
+                                    slides[0].scrollIntoView({ behavior: "auto", inline: "center", block: "nearest" });
+                                }
+                            }
+                        }, 50); // Small delay to let browser render slides and apply styles
                     }
                 });
             });
@@ -543,10 +550,10 @@
                 setTimeout(() => {
                     lightboxSlider.innerHTML = "";
                     lightbox.classList.remove("scrollable-lightbox");
+                    lightbox.classList.remove("single-image");
                 }, 300);
             };
 
-            lightboxClose.addEventListener("click", closeLightbox);
             lightbox.addEventListener("click", (e) => {
                 if (e.target === lightbox || e.target === lightboxSlider) {
                     closeLightbox();
@@ -1511,8 +1518,10 @@
             width: 100%;
             /* Full screen width to center the image */
             height: 100%;
-            background-color: transparent;
-            /* Remove black background overlay */
+            background-color: rgba(255, 255, 255, 0.45);
+            /* Translucent white backdrop overlay */
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1571,27 +1580,37 @@
             transform: scale(1);
         }
 
-        .lightbox-close {
-            position: fixed;
-            /* Keep close button floating when scrolling long images */
-            top: 20px;
-            right: 30px;
-            color: #ffffff;
-            /* White close button */
-            font-size: 50px;
-            font-weight: 300;
-            cursor: pointer;
-            user-select: none;
-            transition: transform 0.2s ease, color 0.2s ease;
-            z-index: 200001;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
-            /* Dark shadow for visibility */
+        /* Single Image Lightbox Styles */
+        .lightbox.single-image .lightbox-slider {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            overflow: hidden;
         }
 
-        .lightbox-close:hover {
-            color: var(--primary-color);
-            transform: scale(1.1);
+        .lightbox.single-image .lightbox-content {
+            flex-shrink: 1;
+            width: auto;
+            max-width: 90%;
+            height: auto;
+            max-height: 85vh;
+            object-fit: contain;
+            margin: 0;
+            padding: 0;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
+            border-radius: 8px;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
         }
+
+        .lightbox.open.single-image .lightbox-content {
+            transform: scale(1);
+        }
+
+
 
         /* Scrollable lightbox layout for long images (Figma card) */
         .lightbox.scrollable-lightbox {
