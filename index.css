@@ -627,7 +627,7 @@ body {
 }
 
 .folder-wrapper:hover {
-  transform: scale(1.1) translateY(-15px);
+  transform: scale(1.1) translateY(-45px);
 }
 
 /* Folder Back Flap */
@@ -1233,4 +1233,55 @@ body {
   transform: translateY(-3px);
   box-shadow: 0 8px 15px rgba(128, 207, 207, 0.2);
   border-color: rgba(128, 207, 207, 0.4);
+}
+
+/* Bobbing/Floating Animation for Folder Inserts */
+@keyframes bobbing {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.insert-uxui .starburst-container {
+  animation: bobbing 2.4s ease-in-out infinite;
+}
+
+.insert-layout .oval-shape {
+  animation: bobbing 2.8s ease-in-out infinite 0.2s;
+}
+
+.insert-idea .starburst-container {
+  animation: bobbing 2.6s ease-in-out infinite 0.4s;
+}
+
+.insert-branding .dome-shape {
+  animation: bobbing 3s ease-in-out infinite 0.6s;
+}
+
+/* Continuous Bobbing Animation for the Entire Folder Container */
+@keyframes folderBobbing {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.folder-floating-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: folderBobbing 6s ease-in-out infinite;
+  width: fit-content;
+  margin: 0 auto;
 }

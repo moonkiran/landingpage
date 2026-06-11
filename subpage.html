@@ -216,16 +216,8 @@
                 <div class="task-cards-container">
                     <!-- Slack Card -->
                     <div class="app-task-card slack-card" data-images="img/fwee.png,img/toriden.png,img/abib.png">
+                        <img src="img/tape1.png" class="card-tape" alt="tape">
                         <div class="app-card-header">
-                            <span class="app-logo">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="12" y1="17" x2="12" y2="22"></line>
-                                    <path
-                                        d="M5 17h14v-1.76a2 2 0 0 0-.44-1.24l-2.78-3.48A2 2 0 0 1 15 9.28V4a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v5.28c0 .4-.12.79-.34 1.12L5.44 14a2 2 0 0 0-.44 1.24V17z">
-                                    </path>
-                                </svg>
-                            </span>
                             <span class="app-name">#CardNews</span>
                         </div>
                         <div class="app-card-body">
@@ -240,16 +232,8 @@
 
                     <!-- Notion Card -->
                     <div class="app-task-card notion-card" data-images="img/car_landing.jpg">
+                        <img src="img/tape1.png" class="card-tape" alt="tape">
                         <div class="app-card-header">
-                            <span class="app-logo">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="12" y1="17" x2="12" y2="22"></line>
-                                    <path
-                                        d="M5 17h14v-1.76a2 2 0 0 0-.44-1.24l-2.78-3.48A2 2 0 0 1 15 9.28V4a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v5.28c0 .4-.12.79-.34 1.12L5.44 14a2 2 0 0 0-.44 1.24V17z">
-                                    </path>
-                                </svg>
-                            </span>
                             <span class="app-name">#WebDesign</span>
                         </div>
                         <div class="app-card-body">
@@ -264,16 +248,8 @@
 
                     <!-- Trello Card -->
                     <div class="app-task-card trello-card" data-images="img/matcha_design.png">
+                        <img src="img/tape1.png" class="card-tape" alt="tape">
                         <div class="app-card-header">
-                            <span class="app-logo">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="12" y1="17" x2="12" y2="22"></line>
-                                    <path
-                                        d="M5 17h14v-1.76a2 2 0 0 0-.44-1.24l-2.78-3.48A2 2 0 0 1 15 9.28V4a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v5.28c0 .4-.12.79-.34 1.12L5.44 14a2 2 0 0 0-.44 1.24V17z">
-                                    </path>
-                                </svg>
-                            </span>
                             <span class="app-name">#SNSPoster</span>
                         </div>
                         <div class="app-card-body">
@@ -288,16 +264,8 @@
 
                     <!-- Figma Card -->
                     <div class="app-task-card figma-card" data-images="img/museum_redesign.png">
+                        <img src="img/tape1.png" class="card-tape" alt="tape">
                         <div class="app-card-header">
-                            <span class="app-logo">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="12" y1="17" x2="12" y2="22"></line>
-                                    <path
-                                        d="M5 17h14v-1.76a2 2 0 0 0-.44-1.24l-2.78-3.48A2 2 0 0 1 15 9.28V4a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v5.28c0 .4-.12.79-.34 1.12L5.44 14a2 2 0 0 0-.44 1.24V17z">
-                                    </path>
-                                </svg>
-                            </span>
                             <span class="app-name">#WebDesign</span>
                         </div>
                         <div class="app-card-body">
@@ -1354,6 +1322,18 @@
             border: none;
         }
 
+        .card-tape {
+            position: absolute;
+            top: -36px;
+            left: -30px;
+            width: 115px;
+            height: auto;
+            transform: rotate(-30deg);
+            z-index: 10;
+            pointer-events: none;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
         .app-task-card:hover {
             transform: translateY(-12px) scale(1.04) !important;
             box-shadow:
@@ -1460,6 +1440,7 @@
             font-size: 14px;
             font-weight: 700;
             color: #333333;
+            margin-left: 20px; /* Prevent overlap with the tape on the top-left */
         }
 
         .app-card-body {
