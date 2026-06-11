@@ -71,35 +71,35 @@
                             id="port3-trigger" style="cursor: pointer;">
                         <h2 class="card-title">DESIGN</h2>
 
-                        <div class="card-buttons">
-                            <a href="#" class="app-link-btn" id="port3-btn">디자인 보러가기</a>
-                        </div>
+                        <!-- <div class="card-buttons">
+                            <a href="#" class="app-link-btn" id="port3-btn">디자인 보러가기</a> -->
                     </div>
                 </div>
-
-            </main>
-
-            <!-- Back Buttons -->
-            <div
-                style="display: flex; flex-direction: column; gap: 15px; align-items: center; margin-top: 150px; margin-bottom: 80px;">
-                <a href="main.html" class="back-btn" style="margin: 0;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="19" y1="12" x2="5" y2="12" />
-                        <polyline points="12 19 5 12 12 5" />
-                    </svg>
-                    Back
-                </a>
-                <a href="index.html" class="back-btn" style="margin: 0;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="19" y1="12" x2="5" y2="12" />
-                        <polyline points="12 19 5 12 12 5" />
-                    </svg>
-                    Back to Intro
-                </a>
-            </div>
         </div>
+
+        </main>
+
+        <!-- Back Buttons -->
+        <div
+            style="display: flex; flex-direction: column; gap: 15px; align-items: center; margin-top: 150px; margin-bottom: 80px;">
+            <a href="main.html" class="back-btn" style="margin: 0;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12" />
+                    <polyline points="12 19 5 12 12 5" />
+                </svg>
+                Back
+            </a>
+            <a href="index.html" class="back-btn" style="margin: 0;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12" />
+                    <polyline points="12 19 5 12 12 5" />
+                </svg>
+                Back to Intro
+            </a>
+        </div>
+    </div>
     </div>
 
     <!-- Modal for Portfolio 1 (Flowing Images) -->
@@ -807,7 +807,33 @@
         }
 
         .portfolio-card:hover {
-            transform: translateY(-12px);
+            transform: translateY(-45px) scale(1.04);
+        }
+
+        @keyframes cardBobbing {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .card-port1 .portfolio-card-content {
+            animation: cardBobbing 5s ease-in-out infinite;
+        }
+
+        .card-port2 .portfolio-card-content {
+            animation: cardBobbing 5.5s ease-in-out infinite 0.3s;
+        }
+
+        .card-port3 .portfolio-card-content {
+            animation: cardBobbing 5.2s ease-in-out infinite 0.6s;
         }
 
         .portfolio-card-content {
@@ -860,7 +886,7 @@
         }
 
         .cards-grid .portfolio-card:hover .card-image-only {
-            transform: scale(1.1) rotate(5deg);
+            transform: scale(1.1);
         }
 
         .card-icon-wrapper {
@@ -877,7 +903,7 @@
         }
 
         .card:hover .card-icon-wrapper {
-            transform: scale(1.1) rotate(5deg);
+            transform: scale(1.1);
         }
 
         /* Card Typography */
@@ -1440,7 +1466,8 @@
             font-size: 14px;
             font-weight: 700;
             color: #333333;
-            margin-left: 20px; /* Prevent overlap with the tape on the top-left */
+            margin-left: 20px;
+            /* Prevent overlap with the tape on the top-left */
         }
 
         .app-card-body {
