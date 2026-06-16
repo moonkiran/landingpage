@@ -43,8 +43,8 @@
                         <h2 class="card-title">USANBISEO</h2>
 
                         <div class="card-buttons">
-
-                            <a href="https://usanbiseo.vercel.app/" class="app-link-btn" target="_blank">우산비서 바로 가기</a>
+                            <button class="app-link-btn" id="port1-modal-btn">포트폴리오</button>
+                            <a href="https://usanbiseo.vercel.app/" class="app-link-btn" target="_blank">앱 바로 가기</a>
                         </div>
                     </div>
                 </div>
@@ -57,9 +57,8 @@
                         <h2 class="card-title">AUTOCANVAS</h2>
 
                         <div class="card-buttons">
-
-                            <a href="https://autocanvas-sigma.vercel.app/" class="app-link-btn" target="_blank">오토캔버스
-                                바로가기</a>
+                            <button class="app-link-btn" id="port2-modal-btn">포트폴리오</button>
+                            <a href="https://autocanvas-sigma.vercel.app/" class="app-link-btn" target="_blank">웹 바로가기</a>
                         </div>
                     </div>
                 </div>
@@ -71,8 +70,9 @@
                             id="port3-trigger" style="cursor: pointer;">
                         <h2 class="card-title">DESIGN</h2>
 
-                        <!-- <div class="card-buttons">
-                            <a href="#" class="app-link-btn" id="port3-btn">디자인 보러가기</a> -->
+                        <div class="card-buttons">
+                            <a href="#" class="app-link-btn" id="port3-btn">디자인 보러가기</a>
+                        </div>
                     </div>
                 </div>
         </div>
@@ -262,7 +262,7 @@
                         </div>
                     </div>
 
-                    <!-- Figma Card -->
+                    <!-- Figma Card
                     <div class="app-task-card figma-card" data-images="img/museum_redesign.png">
                         <img src="img/tape1.png" class="card-tape" alt="tape">
                         <div class="app-card-header">
@@ -276,7 +276,7 @@
                             <div class="task-date">Personal Project</div>
                             <div class="task-meta">Design | 2025. 05. 27</div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -291,9 +291,10 @@
         document.addEventListener("DOMContentLoaded", () => {
             const cursor = document.getElementById("custom-cursor");
             // Elements that trigger custom cursor "Click" hover state
-            const clickables = document.querySelectorAll(".card-image-only, .back-btn, .app-link-btn, .app-task-card, .lightbox-close");
+            const clickables = document.querySelectorAll(".card-image-only, .back-btn, .app-task-card, .lightbox-close");
             // Prevent opening modal when clicking on the link buttons inside the cards
-            const linkBtns = document.querySelectorAll(".app-link-btn");
+            // Exclude modal-trigger buttons (port1-modal-btn, port2-modal-btn) so they can open their modals
+            const linkBtns = document.querySelectorAll(".app-link-btn:not(#port1-modal-btn):not(#port2-modal-btn):not(#port3-btn)");
             linkBtns.forEach(btn => {
                 btn.addEventListener("click", (e) => {
                     e.stopPropagation(); // Stop click from bubbling up to .card
@@ -337,13 +338,18 @@
             const browserBody = port1Modal.querySelector(".browser-body");
 
             if (port1Card && port1Modal) {
-                port1Card.addEventListener("click", (e) => {
+                const openPort1 = (e) => {
                     e.preventDefault();
                     port1Modal.classList.add("open");
-
                     // Reset scroll to top
                     browserBody.scrollTop = 0;
-                });
+                };
+
+                port1Card.addEventListener("click", openPort1);
+
+                // Wire 포트폴리오 button to open the same modal
+                const port1ModalBtn = document.getElementById("port1-modal-btn");
+                if (port1ModalBtn) port1ModalBtn.addEventListener("click", openPort1);
 
                 const closePort1 = () => {
                     port1Modal.classList.remove("open");
@@ -371,11 +377,17 @@
             const port2Iframe = document.getElementById("portfolio2-iframe");
 
             if (port2Card && port2Modal && port2Iframe) {
-                port2Card.addEventListener("click", (e) => {
+                const openPort2 = (e) => {
                     e.preventDefault();
                     port2Iframe.src = "https://ac-webp.vercel.app/";
                     port2Modal.classList.add("open");
-                });
+                };
+
+                port2Card.addEventListener("click", openPort2);
+
+                // Wire 포트폴리오 button to open the same modal
+                const port2ModalBtn = document.getElementById("port2-modal-btn");
+                if (port2ModalBtn) port2ModalBtn.addEventListener("click", openPort2);
 
                 const closePort2 = () => {
                     port2Modal.classList.remove("open");
@@ -625,7 +637,7 @@
         }
 
         body {
-            background: url('img/imaccover.png') no-repeat center center fixed;
+            background: url('img/imaccover.jpg') no-repeat center center fixed;
             background-size: cover;
             font-family: var(--font-sans);
             min-height: 100vh;
@@ -850,6 +862,7 @@
 
         .card-buttons {
             display: flex;
+            flex-direction: column;
             gap: 15px;
             justify-content: center;
             align-items: center;
@@ -1278,6 +1291,11 @@
             width: 160px;
             cursor: none !important;
             z-index: 5;
+            /* Button element reset */
+            font-family: var(--font-sans);
+            box-sizing: border-box;
+            -webkit-appearance: none;
+            appearance: none;
         }
 
         .app-link-btn:hover {
