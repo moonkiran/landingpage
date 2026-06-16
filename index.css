@@ -281,7 +281,7 @@ body {
 .profile-header h2 {
   font-size: 60px;
   font-weight: 800;
-  color: #2DA5AB;
+  color: #0a6e77;
   letter-spacing: -0.02em;
   margin: 0 0 30px 0;
 }
@@ -1008,7 +1008,7 @@ body {
 .stack-header h2:not(.stack-title) {
   font-size: 60px;
   font-weight: 800;
-  color: #2DA5AB;
+  color: #0a6e77;
   letter-spacing: -0.02em;
   margin-bottom: 8px;
 }
