@@ -58,7 +58,8 @@
 
                         <div class="card-buttons">
                             <button class="app-link-btn" id="port2-modal-btn">포트폴리오</button>
-                            <a href="https://autocanvas-sigma.vercel.app/" class="app-link-btn" target="_blank">웹 바로가기</a>
+                            <a href="https://autocanvas-sigma.vercel.app/" class="app-link-btn" target="_blank">웹
+                                바로가기</a>
                         </div>
                     </div>
                 </div>
@@ -68,10 +69,23 @@
                     <div class="portfolio-card-content card-content">
                         <img src="img/file.png" alt="Portfolio Icon" class="card-image-only modal-trigger"
                             id="port3-trigger" style="cursor: pointer;">
-                        <h2 class="card-title">DESIGN</h2>
+                        <h2 class="card-title">MUSEUM REDESIGN</h2>
 
                         <div class="card-buttons">
                             <a href="#" class="app-link-btn" id="port3-btn">디자인 보러가기</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Portfolio 4 -->
+                <div class="portfolio-card card-port4">
+                    <div class="portfolio-card-content card-content">
+                        <img src="img/file.png" alt="Portfolio Icon" class="card-image-only modal-trigger"
+                            id="port4-trigger" style="cursor: pointer;">
+                        <h2 class="card-title">DESIGN</h2>
+
+                        <div class="card-buttons">
+                            <a href="#" class="app-link-btn" id="port4-btn">디자인 보러가기</a>
                         </div>
                     </div>
                 </div>
@@ -179,8 +193,47 @@
         </div>
     </div>
 
-    <!-- Modal for Portfolio 3 (Design Gallery Grid) -->
+    <!-- Modal for Portfolio 3 (Museum Redesign Image Flow) -->
     <div id="portfolio3-modal" class="modal">
+        <div class="modal-content portfolio-modal-content">
+            <!-- Browser Header -->
+            <div class="modal-browser-header">
+                <div class="modal-browser-dots">
+                    <span class="modal-browser-dot dot-close modal-close"></span>
+                    <span class="modal-browser-dot dot-minimize"></span>
+                    <span class="modal-browser-dot dot-maximize"></span>
+                </div>
+                <div class="modal-browser-nav">
+                    <span class="modal-browser-arrow">&#10094;</span>
+                    <span class="modal-browser-arrow">&#10095;</span>
+                </div>
+                <div class="modal-browser-address-bar">
+                    <span class="modal-browser-address-text">https://museum-redesign.vercel.app</span>
+                    <span class="modal-browser-search-icon">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8" />
+                            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                        </svg>
+                    </span>
+                </div>
+                <div class="modal-browser-menu modal-close">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </div>
+            </div>
+            <!-- Browser Body -->
+            <div class="browser-body">
+                <img src="img/museum_redesign.png" alt="Museum Redesign" class="portfolio-flow-img">
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Portfolio 4 (Design Gallery Grid) -->
+    <div id="portfolio4-modal" class="modal">
         <div class="modal-content portfolio-modal-content">
             <!-- Browser Header -->
             <div class="modal-browser-header">
@@ -294,7 +347,7 @@
             const clickables = document.querySelectorAll(".card-image-only, .back-btn, .app-task-card, .lightbox-close");
             // Prevent opening modal when clicking on the link buttons inside the cards
             // Exclude modal-trigger buttons (port1-modal-btn, port2-modal-btn) so they can open their modals
-            const linkBtns = document.querySelectorAll(".app-link-btn:not(#port1-modal-btn):not(#port2-modal-btn):not(#port3-btn)");
+            const linkBtns = document.querySelectorAll(".app-link-btn:not(#port1-modal-btn):not(#port2-modal-btn):not(#port3-btn):not(#port4-btn)");
             linkBtns.forEach(btn => {
                 btn.addEventListener("click", (e) => {
                     e.stopPropagation(); // Stop click from bubbling up to .card
@@ -458,6 +511,45 @@
                 });
             }
 
+            // Portfolio 4 Modal Logic
+            const port4Card = document.getElementById("port4-trigger");
+            const port4Btn = document.getElementById("port4-btn");
+            const port4Modal = document.getElementById("portfolio4-modal");
+            const port4BrowserBody = port4Modal ? port4Modal.querySelector(".browser-body") : null;
+
+            if (port4Modal) {
+                const openPort4 = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    port4Modal.classList.add("open");
+                    if (port4BrowserBody) {
+                        port4BrowserBody.scrollTop = 0;
+                    }
+                };
+
+                if (port4Card) port4Card.addEventListener("click", openPort4);
+                if (port4Btn) port4Btn.addEventListener("click", openPort4);
+
+                const closePort4 = () => {
+                    port4Modal.classList.remove("open");
+                };
+
+                const port4CloseButtons = port4Modal.querySelectorAll(".modal-close");
+                port4CloseButtons.forEach(btn => btn.addEventListener("click", closePort4));
+
+                port4Modal.addEventListener("click", (e) => {
+                    if (e.target === port4Modal) {
+                        closePort4();
+                    }
+                });
+
+                document.addEventListener("keydown", (e) => {
+                    if (e.key === "Escape" && port4Modal.classList.contains("open")) {
+                        closePort4();
+                    }
+                });
+            }
+
             // Lightbox Logic for Design Gallery Cards (CSS Scroll Snap Carousel)
             const lightbox = document.getElementById("lightbox");
             const lightboxSlider = lightbox.querySelector(".lightbox-slider");
@@ -615,6 +707,7 @@
             --color-port1: #d48295;
             --color-port2: #fb9d6a;
             --color-port3: #a38bf4;
+            --color-port4: #a38bf4;
         }
 
         * {
@@ -848,6 +941,10 @@
             animation: cardBobbing 5.2s ease-in-out infinite 0.6s;
         }
 
+        .card-port4 .portfolio-card-content {
+            animation: cardBobbing 5.2s ease-in-out infinite 0.9s;
+        }
+
         .portfolio-card-content {
             padding: 40px 30px;
             display: flex;
@@ -886,6 +983,10 @@
 
         .card-port3 {
             --card-color: var(--color-port3);
+        }
+
+        .card-port4 {
+            --card-color: var(--color-port4);
         }
 
         /* Card Icon / Graphic */
