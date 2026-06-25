@@ -67,12 +67,14 @@
                 <!-- Card 3: Portfolio 3 -->
                 <div class="portfolio-card card-port3">
                     <div class="portfolio-card-content card-content">
-                        <img src="img/file.png" alt="Portfolio Icon" class="card-image-only modal-trigger"
-                            id="port3-trigger" style="cursor: pointer;">
-                        <h2 class="card-title">MUSEUM REDESIGN</h2>
+                        <a href="https://banilacoredesign.vercel.app/" target="_blank" style="display:inline-block;">
+                            <img src="img/file.png" alt="Portfolio Icon" class="card-image-only"
+                                id="port3-trigger" style="cursor: pointer;">
+                        </a>
+                        <h2 class="card-title">BANILACO REDESIGN</h2>
 
                         <div class="card-buttons">
-                            <a href="#" class="app-link-btn" id="port3-btn">디자인 보러가기</a>
+                            <a href="https://banilacoredesign.vercel.app/" class="app-link-btn" id="port3-btn" target="_blank">디자인 보러가기</a>
                         </div>
                     </div>
                 </div>
@@ -82,10 +84,23 @@
                     <div class="portfolio-card-content card-content">
                         <img src="img/file.png" alt="Portfolio Icon" class="card-image-only modal-trigger"
                             id="port4-trigger" style="cursor: pointer;">
-                        <h2 class="card-title">DESIGN</h2>
+                        <h2 class="card-title">MUSEUM REDESIGN</h2>
 
                         <div class="card-buttons">
                             <a href="#" class="app-link-btn" id="port4-btn">디자인 보러가기</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5: Portfolio 5 -->
+                <div class="portfolio-card card-port5">
+                    <div class="portfolio-card-content card-content">
+                        <img src="img/file.png" alt="Portfolio Icon" class="card-image-only modal-trigger"
+                            id="port5-trigger" style="cursor: pointer;">
+                        <h2 class="card-title">DESIGN</h2>
+
+                        <div class="card-buttons">
+                            <a href="#" class="app-link-btn" id="port5-btn">디자인 보러가기</a>
                         </div>
                     </div>
                 </div>
@@ -193,8 +208,9 @@
         </div>
     </div>
 
-    <!-- Modal for Portfolio 3 (Museum Redesign Image Flow) -->
-    <div id="portfolio3-modal" class="modal">
+
+    <!-- Modal for Portfolio 4 (Museum Redesign Image Flow) -->
+    <div id="portfolio4-modal" class="modal">
         <div class="modal-content portfolio-modal-content">
             <!-- Browser Header -->
             <div class="modal-browser-header">
@@ -232,8 +248,8 @@
         </div>
     </div>
 
-    <!-- Modal for Portfolio 4 (Design Gallery Grid) -->
-    <div id="portfolio4-modal" class="modal">
+    <!-- Modal for Portfolio 5 (Design Gallery Grid) -->
+    <div id="portfolio5-modal" class="modal">
         <div class="modal-content portfolio-modal-content">
             <!-- Browser Header -->
             <div class="modal-browser-header">
@@ -314,22 +330,6 @@
                             <div class="task-meta">Design | 2025. 05. 14</div>
                         </div>
                     </div>
-
-                    <!-- Figma Card
-                    <div class="app-task-card figma-card" data-images="img/museum_redesign.png">
-                        <img src="img/tape1.png" class="card-tape" alt="tape">
-                        <div class="app-card-header">
-                            <span class="app-name">#WebDesign</span>
-                        </div>
-                        <div class="app-card-body">
-                            <span class="task-label">Tool: Figma, Lovable</span>
-                            <h4 class="task-title">Museum Website Redesign</h4>
-                        </div>
-                        <div class="app-card-footer">
-                            <div class="task-date">Personal Project</div>
-                            <div class="task-meta">Design | 2025. 05. 27</div>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -347,7 +347,7 @@
             const clickables = document.querySelectorAll(".card-image-only, .back-btn, .app-task-card, .lightbox-close");
             // Prevent opening modal when clicking on the link buttons inside the cards
             // Exclude modal-trigger buttons (port1-modal-btn, port2-modal-btn) so they can open their modals
-            const linkBtns = document.querySelectorAll(".app-link-btn:not(#port1-modal-btn):not(#port2-modal-btn):not(#port3-btn):not(#port4-btn)");
+            const linkBtns = document.querySelectorAll(".app-link-btn:not(#port1-modal-btn):not(#port2-modal-btn):not(#port3-btn):not(#port4-btn):not(#port5-btn)");
             linkBtns.forEach(btn => {
                 btn.addEventListener("click", (e) => {
                     e.stopPropagation(); // Stop click from bubbling up to .card
@@ -472,46 +472,10 @@
                 });
             }
 
-            // Portfolio 3 Modal Logic
-            const port3Card = document.getElementById("port3-trigger");
-            const port3Btn = document.getElementById("port3-btn");
-            const port3Modal = document.getElementById("portfolio3-modal");
-            const port3BrowserBody = port3Modal.querySelector(".browser-body");
+            // Portfolio 3 - Direct Link (Banilco Redesign)
+            // Card image and button both have direct href links; no modal logic needed.
 
-            if (port3Modal) {
-                const openPort3 = (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    port3Modal.classList.add("open");
-                    if (port3BrowserBody) {
-                        port3BrowserBody.scrollTop = 0;
-                    }
-                };
-
-                if (port3Card) port3Card.addEventListener("click", openPort3);
-                if (port3Btn) port3Btn.addEventListener("click", openPort3);
-
-                const closePort3 = () => {
-                    port3Modal.classList.remove("open");
-                };
-
-                const port3CloseButtons = port3Modal.querySelectorAll(".modal-close");
-                port3CloseButtons.forEach(btn => btn.addEventListener("click", closePort3));
-
-                port3Modal.addEventListener("click", (e) => {
-                    if (e.target === port3Modal) {
-                        closePort3();
-                    }
-                });
-
-                document.addEventListener("keydown", (e) => {
-                    if (e.key === "Escape" && port3Modal.classList.contains("open")) {
-                        closePort3();
-                    }
-                });
-            }
-
-            // Portfolio 4 Modal Logic
+            // Portfolio 4 Modal Logic (Museum Redesign - Image)
             const port4Card = document.getElementById("port4-trigger");
             const port4Btn = document.getElementById("port4-btn");
             const port4Modal = document.getElementById("portfolio4-modal");
@@ -522,31 +486,54 @@
                     e.preventDefault();
                     e.stopPropagation();
                     port4Modal.classList.add("open");
-                    if (port4BrowserBody) {
-                        port4BrowserBody.scrollTop = 0;
-                    }
+                    if (port4BrowserBody) { port4BrowserBody.scrollTop = 0; }
                 };
 
                 if (port4Card) port4Card.addEventListener("click", openPort4);
                 if (port4Btn) port4Btn.addEventListener("click", openPort4);
 
-                const closePort4 = () => {
-                    port4Modal.classList.remove("open");
-                };
+                const closePort4 = () => { port4Modal.classList.remove("open"); };
 
                 const port4CloseButtons = port4Modal.querySelectorAll(".modal-close");
                 port4CloseButtons.forEach(btn => btn.addEventListener("click", closePort4));
 
                 port4Modal.addEventListener("click", (e) => {
-                    if (e.target === port4Modal) {
-                        closePort4();
-                    }
+                    if (e.target === port4Modal) { closePort4(); }
                 });
 
                 document.addEventListener("keydown", (e) => {
-                    if (e.key === "Escape" && port4Modal.classList.contains("open")) {
-                        closePort4();
-                    }
+                    if (e.key === "Escape" && port4Modal.classList.contains("open")) { closePort4(); }
+                });
+            }
+
+            // Portfolio 5 Modal Logic (Design Gallery)
+            const port5Card = document.getElementById("port5-trigger");
+            const port5Btn = document.getElementById("port5-btn");
+            const port5Modal = document.getElementById("portfolio5-modal");
+            const port5BrowserBody = port5Modal ? port5Modal.querySelector(".browser-body") : null;
+
+            if (port5Modal) {
+                const openPort5 = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    port5Modal.classList.add("open");
+                    if (port5BrowserBody) { port5BrowserBody.scrollTop = 0; }
+                };
+
+                if (port5Card) port5Card.addEventListener("click", openPort5);
+                if (port5Btn) port5Btn.addEventListener("click", openPort5);
+
+                const closePort5 = () => { port5Modal.classList.remove("open"); };
+
+                const port5CloseButtons = port5Modal.querySelectorAll(".modal-close");
+                port5CloseButtons.forEach(btn => btn.addEventListener("click", closePort5));
+
+                port5Modal.addEventListener("click", (e) => {
+                    if (e.target === port5Modal) { closePort5(); }
+                });
+
+                document.addEventListener("keydown", (e) => {
+                    if (e.key === "Escape" && port5Modal.classList.contains("open")) { closePort5(); }
                 });
             }
 
@@ -706,8 +693,9 @@
             --color-profile: #80cfcf;
             --color-port1: #d48295;
             --color-port2: #fb9d6a;
-            --color-port3: #a38bf4;
+            --color-port3: #6bb8f0;
             --color-port4: #a38bf4;
+            --color-port5: #a38bf4;
         }
 
         * {
@@ -945,6 +933,10 @@
             animation: cardBobbing 5.2s ease-in-out infinite 0.9s;
         }
 
+        .card-port5 .portfolio-card-content {
+            animation: cardBobbing 5.4s ease-in-out infinite 1.2s;
+        }
+
         .portfolio-card-content {
             padding: 40px 30px;
             display: flex;
@@ -987,6 +979,10 @@
 
         .card-port4 {
             --card-color: var(--color-port4);
+        }
+
+        .card-port5 {
+            --card-color: var(--color-port5);
         }
 
         /* Card Icon / Graphic */
